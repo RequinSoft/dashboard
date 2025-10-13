@@ -43,51 +43,61 @@
 
                 @livewire('conversiones')
 
-                    <!-- Demanda -->
-                    <div class="col-lg-3 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
-                        <div class="d-flex flex-between-center mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 fas fa-bolt text-info"></span>
-                                </div>
-                                <h6 class="mb-0">Demanda</h6> 
+                <!-- Demanda -->
+                <div class="col-lg-3 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 fas fa-bolt text-info"></span>
                             </div>
-                            
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 fa fa-history text-info"></span>
-                                </div>
-                                <h6 class="mb-0">                              
-                                    <a href="" target="#">Histórico</a>
-                                </h6> 
+                            <h6 class="mb-0">Demanda</h6> 
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 fa fa-history text-info"></span>
                             </div>
+                            <h6 class="mb-0">                              
+                                <a href="" target="#">Histórico</a>
+                            </h6> 
                         </div>
-                        <div class="text-end">
-                            <div class="d-flex">
-                                <p id="obtenerDemanda" style="color: blue" class="font-sans-serif lh-1 mb-1 fs-4 pe-2">
-                                    <!-- Demanda al iniciar la página -->
-                                     Demanda
-                                </p>
-                            </div>                            
-                        </div>
-
-                        <div class="text-end">
-                            <div class="d-flex">
-                                <!-- Simple Espacio -->
-                            </div>                            
-                        </div>
-
-                        <!-- Alarma Demanda -->
-                        <div class="text-end">
-                            <div class="d-flex">
-                                <p id="alarmaDemanda" style="color: #FF0000" class="font-sans-serif lh-1 mb-1 fs-4 pe-2">
-                                    <!-- Demanda al iniciar la página -->
-                                </p>
-                            </div>                            
-                        </div>
-                        <!-- Alarma Demanda -->
                     </div>
-                    <!-- Demanda -->
+                        @livewire('demanda-actual')
+                    <div class="text-end">
+                            <!-- Simple Espacio -->
+                            <hr>                        
+                    </div>
+
+                    <!-- Alarma Demanda -->
+                    <div class="text-end">
+                        <div class="d-flex">
+                            <p id="alarmaDemanda" style="color: #FF0000" class="font-sans-serif lh-1 mb-1 fs-4 pe-2">
+                                <!-- Demanda al iniciar la página -->
+                            </p>
+                        </div>                            
+                    </div>
+                    <!-- Alarma Demanda -->
+
+                    <div class="text-end">
+                            <!-- Simple Espacio -->
+                            <hr>                        
+                    </div>
+
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 fas fa-bolt text-info"></span>
+                            </div>
+                            <h6 class="mb-0">Factor</h6> 
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                        </div>
+                    </div>
+                    @livewire('factor-potencia')
+
+                </div>
+                <!-- Demanda -->
 
                     <!-- Courier -->
                     <div class="col-lg-2 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
