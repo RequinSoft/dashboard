@@ -35,7 +35,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
                         <div class="bg-white dark__bg-1000 rounded-2 py-2">   
-                            <a class="dropdown-item" href="">Ingresar</a>
+                            <a class="dropdown-item" href="{{ route('login') }}">Ingresar</a>
                         </div>
                         </div>
                     </li>
