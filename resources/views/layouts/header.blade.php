@@ -46,92 +46,91 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <style type="text/css">
-    #container_moliendaMensual {
-        max-width: 200px;
-        margin: 0 auto;
-    }
+        #container_moliendaMensual {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 380px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
     
-    .highcharts-figure,
-    .highcharts-data-table table {
-        min-width: 380px;
-        max-width: 600px;
-        margin: 0 auto;
-    }
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #ebebeb;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+        
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+        
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
     
-    .highcharts-data-table table {
-        font-family: Verdana, sans-serif;
-        border-collapse: collapse;
-        border: 1px solid #ebebeb;
-        margin: 10px auto;
-        text-align: center;
-        width: 100%;
-        max-width: 500px;
-    }
-    
-    .highcharts-data-table caption {
-        padding: 1em 0;
-        font-size: 1.2em;
-        color: #555;
-    }
-    
-    .highcharts-data-table th {
-        font-weight: 600;
-        padding: 0.5em;
-    }
-    
-    .highcharts-data-table td,
-    .highcharts-data-table th,
-    .highcharts-data-table caption {
-        padding: 0.5em;
-    }
-    
-    .highcharts-data-table thead tr,
-    .highcharts-data-table tr:nth-child(even) {
-        background: #f8f8f8;
-    }
-    
-    .highcharts-data-table tr:hover {
-        background: #f1f7ff;
-    }
-    
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+        
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }    
     </style>
 
     <style>
-    body, canvas, div, form, input {
-        margin: 0;
-        padding: 0;
-    }
-    #wrapper {
-        width: 100%;
-        padding: 1px;
-    }
-    canvas {
-        position: relative;
-        margin: 1px;
-        margin-left: 0px;
-        border: 1px solid #3a87ad;
-    }
-    h1, p {
-        padding-left: 2px;
-        width: 100%;
-        margin: 0 auto;
-    }
-    #controlPanel {
-        margin: 2px;
-    }
-    #saveSignature {
-        display: none;
-    }
-    .kbw-signature { width: 100%; height: 180px;}
-    #signaturePad canvas{
-    width: 100% !important;
-    height: auto;
-    }
-    #container: {
-        min-width: 310px;
-        height: 400px;
-        margin: 0 auto;
-    }
+        body, canvas, div, form, input {
+            margin: 0;
+            padding: 0;
+        }
+        #wrapper {
+            width: 100%;
+            padding: 1px;
+        }
+        canvas {
+            position: relative;
+            margin: 1px;
+            margin-left: 0px;
+            border: 1px solid #3a87ad;
+        }
+        h1, p {
+            padding-left: 2px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        #controlPanel {
+            margin: 2px;
+        }
+        #saveSignature {
+            display: none;
+        }
+        .kbw-signature { width: 100%; height: 180px;}
+        #signaturePad canvas{
+        width: 100% !important;
+        height: auto;
+        }
+        #container: {
+            min-width: 310px;
+            height: 400px;
+            margin: 0 auto;
+        }
     </style>
 
     <script>
@@ -149,5 +148,6 @@
         userLinkRTL.setAttribute('disabled', true);
       }
     </script>
+    
     @livewireStyles
   </head>

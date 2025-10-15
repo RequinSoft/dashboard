@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class configKw extends Model
+class ConfigKw extends Model
 {
     protected $table = 'config_kw';
 

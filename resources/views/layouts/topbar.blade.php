@@ -1,5 +1,4 @@
 <body>
-
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
@@ -13,7 +12,6 @@
                   container.classList.add('container-fluid');
               }
             </script>
-
 
             <div class="content">
                 <!-- Menú dispositivos -->

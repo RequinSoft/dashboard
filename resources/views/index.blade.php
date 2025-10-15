@@ -81,15 +81,7 @@
                             <hr>                        
                     </div>
 
-                    <!-- Alarma Demanda -->
-                    <div class="text-end">
-                        <div class="d-flex">
-                            <p id="alarmaDemanda" style="color: #FF0000" class="font-sans-serif lh-1 mb-1 fs-4 pe-2">
-                                <!-- Demanda al iniciar la página -->
-                            </p>
-                        </div>                            
-                    </div>
-                    <!-- Alarma Demanda -->
+                        @livewire('demanda-alarma')
 
                     <div class="text-end">
                             <!-- Simple Espacio -->
@@ -112,194 +104,194 @@
                 </div>
                 <!-- Demanda -->
 
-                    <!-- Courier -->
-                    <div class="col-lg-2 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
-                        <div class="d-flex flex-between-center mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 fas fa-filter text-info"></span>
-                                </div>
-                                <h6 class="mb-0">Courier</h6>
+                <!-- Courier -->
+                <div class="col-lg-2 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 fas fa-filter text-info"></span>
                             </div>
-                            
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 fa fa-history text-info"></span>
-                                </div>
-                                <h6 class="mb-0">                              
-                                    <a href="" target="#">Histórico</a>
-                                </h6> 
-                            </div>
-                        </div>
-                        <div class="d-flex row">
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="courierAu" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>  
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="courierAg" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div> 
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="courierPb" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>  
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="courierZn" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>   
-
-                        </div>
-                    </div>
-                    <!-- Courier -->
-
-                    <!-- Tracking -->
-                    <div class="col-lg-3 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
-                        <div class="d-flex flex-between-center mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 far fa-user-circle text-info"></span>
-                                </div>
-                                <h6 class="mb-0">Personal en Mina</h6>
-                            </div>
-                            <h4 id="totalPersonal" class="fs-3 fw-normal text-primary text-end">
-                                
-                            </h4>
-                        </div>
-                        <div class="d-flex row">
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaRampa1" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="rampa1" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>  
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaRampa2" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="rampa2" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div> 
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaRampa3" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="rampa3" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>  
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaTaller1850" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="taller1850" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaCiudadela" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="ciudadela" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>  
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div id="leyendaOtrasAreas" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                    
-                                </div>
-                                <div id="otrasAreas" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
-                                    
-                                </div>
-                            </div>    
-
-                        </div>
-                    </div>
-                    <!-- Tracking -->
-
-                    <!-- Prácticas de Liderazgo -->
-                    <div class="col-lg-2 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
-                        <div class="d-flex flex-between-center mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 far fa-user-circle text-info"></span>
-                                </div>
-                                <h6 class="mb-0">Prácticas de Liderazgo</h6>
-                            </div>
-                        </div>
-                        <div class="d-flex row">
-                            <div class="d-flex">
-                                <!-- Valores al iniciar la página -->
-                                <div class="col-lg-12 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-center">
-                                    Juanicipio
-                                </div>
-                            </div>     
-
-                        </div>
-                        <div class="d-flex row">
-                            <div class="d-flex">
-
-                                <div id="avgPL" class="col-lg-12 font-sans-serif lh-1 mb-1 fs-2 pe-3 text-center">
-                                    Prácticas de Liderazgo
-                                </div>
-                            </div>     
-
-                        </div>
-
-                        <!--                    -->
-
-                        <div class="col ps-0 mb-3">
-                            <hr class="mb-0 navbar-vertical-divider" />
+                            <h6 class="mb-0">Courier</h6>
                         </div>
                         
-                        <div class="d-flex flex-between-center mb-3">
-                            <div class="d-flex align-items-center">
-                                <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
-                                    <span class="fs--2 far fa-user-circle text-info"></span>
-                                </div>
-                                <h6 class="mb-0"><a href="">Cuadrilleros en Turno</a></h6>
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 fa fa-history text-info"></span>
+                            </div>
+                            <h6 class="mb-0">                              
+                                <a href="" target="#">Histórico</a>
+                            </h6> 
+                        </div>
+                    </div>
+                    <div class="d-flex row">
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="courierAu" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>  
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="courierAg" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div> 
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="courierPb" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>  
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="courierZn" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>   
+
+                    </div>
+                </div>
+                <!-- Courier -->
+
+                <!-- Tracking -->
+                <div class="col-lg-3 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 far fa-user-circle text-info"></span>
+                            </div>
+                            <h6 class="mb-0">Personal en Mina</h6>
+                        </div>
+                        <h4 id="totalPersonal" class="fs-3 fw-normal text-primary text-end">
+                            
+                        </h4>
+                    </div>
+                    <div class="d-flex row">
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaRampa1" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="rampa1" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>  
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaRampa2" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="rampa2" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div> 
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaRampa3" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="rampa3" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>  
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaTaller1850" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="taller1850" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
                             </div>
                         </div>
-                        <div class="d-flex row">
-                            <div class="d-flex">
-                                <div id="contarCuadrilleros" class="col-lg-12 font-sans-serif lh-1 mb-1 fs-2 pe-3 text-center">
-                                    Cuadrilleros en Turno
-                                </div>
-                            </div>     
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaCiudadela" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="ciudadela" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>  
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div id="leyendaOtrasAreas" class="col-lg-8 font-sans-serif lh-1 mb-1 fs-1 pe-2">
+                                
+                            </div>
+                            <div id="otrasAreas" class="col-lg-4 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
+                                
+                            </div>
+                        </div>    
 
-                        </div>
-                        <!--                      -->
                     </div>
-                    <!-- Prácticas de Liderazgo -->
+                </div>
+                <!-- Tracking -->
+
+                <!-- Prácticas de Liderazgo -->
+                <div class="col-lg-2 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 far fa-user-circle text-info"></span>
+                            </div>
+                            <h6 class="mb-0">Prácticas de Liderazgo</h6>
+                        </div>
+                    </div>
+                    <div class="d-flex row">
+                        <div class="d-flex">
+                            <!-- Valores al iniciar la página -->
+                            <div class="col-lg-12 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-center">
+                                Juanicipio
+                            </div>
+                        </div>     
+
+                    </div>
+                    <div class="d-flex row">
+                        <div class="d-flex">
+
+                            <div id="avgPL" class="col-lg-12 font-sans-serif lh-1 mb-1 fs-2 pe-3 text-center">
+                                Prácticas de Liderazgo
+                            </div>
+                        </div>     
+
+                    </div>
+
+                    <!--                    -->
+
+                    <div class="col ps-0 mb-3">
+                        <hr class="mb-0 navbar-vertical-divider" />
+                    </div>
+                    
+                    <div class="d-flex flex-between-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info">
+                                <span class="fs--2 far fa-user-circle text-info"></span>
+                            </div>
+                            <h6 class="mb-0"><a href="">Cuadrilleros en Turno</a></h6>
+                        </div>
+                    </div>
+                    <div class="d-flex row">
+                        <div class="d-flex">
+                            <div id="contarCuadrilleros" class="col-lg-12 font-sans-serif lh-1 mb-1 fs-2 pe-3 text-center">
+                                Cuadrilleros en Turno
+                            </div>
+                        </div>     
+
+                    </div>
+                    <!--                      -->
+                </div>
+                <!-- Prácticas de Liderazgo -->
 
                 </div>
             </div>
