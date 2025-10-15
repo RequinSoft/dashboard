@@ -33,3 +33,19 @@ if(!function_exists('getExchangeRates')) {
         return $exchangeRates;
     }
 }
+
+if(!function_exists('getDemandaConfig')) {
+    /**
+     * Fetch KW data from an external device.
+     *
+     * @return string The KW data.
+     */
+    function getDemandaConfig() {
+        // Fetch IP and setPoint from the database
+        // Assuming you have a model named SetPointDemanda
+        // and it has fields 'ip' and 'setpoint'
+        // You may need to adjust this part based on your actual database structure
+
+        // Example using Eloquent ORM
+    }
+}

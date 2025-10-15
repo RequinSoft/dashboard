@@ -47,9 +47,9 @@ class getCurrencies extends Command
             $ag = getExchangeRates($usd, $xag);
 
             Conversion::create([
-                'usd' => 0,
-                'au' => 0,
-                'ag' => 0
+                'usd' => $dolar ? $dolar['result'] : 0,
+                'au' => $au ? $au['result'] : 0,
+                'ag' => $ag ? $ag['result'] : 0
             ]);
             $currencies = Conversion::find(1);
 
