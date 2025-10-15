@@ -16,14 +16,16 @@ class UserSeeder extends Seeder
     {        
         User::factory()->create([
             'name' => 'sa',
-            'username' => 'sa',
+            'user' => 'sa',
+            'authen' => 1,
             'email' => 'sa@gmail.com',
             'password' => bcrypt('54rtr3007'),
         ]);
 
         User::factory()->create([
             'name' => 'admin',
-            'username' => 'admin',
+            'user' => 'admin',
+            'authen' => 1,
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
         ]);

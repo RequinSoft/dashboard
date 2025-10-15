@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('ip')->nullable();
             $table->string('port')->nullable();
             $table->string('setpoint')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('config_kw');
     }
 };

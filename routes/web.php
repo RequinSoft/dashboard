@@ -18,4 +18,8 @@ Route::controller(DashboardController::class)->group(function(){
     Route::post('/login','login')
         ->name('login');
 
+    // Admin
+    Route::get('/admin','adminIndex')
+        ->name('admin.index');
+
 });
