@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('demanda_alarma', function (Blueprint $table) {
+        Schema::create('config_empresa', function (Blueprint $table) {
             $table->id();
-            $table->double('kw')->default(0);            
-            $table->boolean('activa')->nullable();
-            $table->string('criticidad')->nullable();
+            $table->string('nombre_empresa')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demanda_alarma');
+        Schema::dropIfExists('config_empresa');
     }
 };
