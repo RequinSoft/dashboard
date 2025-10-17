@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\ConfigEmpresa;
 
 class DashboardController extends Controller
 {
     public function index(){
 
-        return view('index');
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        return view('index', compact('empresa'));
     }
 
     public function loginIndex(){
@@ -47,8 +54,22 @@ class DashboardController extends Controller
         }
     }
 
+    public function logout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->to('/');
+    }
+
     public function adminIndex(){
-        
-        return view('admin.index');
+
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.index', compact('empresa'));
     }
 }

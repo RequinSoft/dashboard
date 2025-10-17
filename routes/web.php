@@ -18,6 +18,10 @@ Route::controller(DashboardController::class)->group(function(){
     Route::post('/login','login')
         ->name('login');
 
+    // Logout
+    Route::get('/logout','logout')
+        ->name('logout');
+
     // Admin
     Route::get('/admin','adminIndex')
         ->name('admin.index');

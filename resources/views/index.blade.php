@@ -14,7 +14,7 @@
                     </img>
                     <div>
                         <h6 class="text-primary fs--1 mb-0">Dashboard Operativo</h6>
-                        <h4 class="text-primary fw-bold mb-0">Saucito <span class="text-info fw-medium"></span></h4>
+                        <h4 class="text-primary fw-bold mb-0">{{$empresa}} <span class="text-info fw-medium"></span></h4>
                     </div>
                 </div>
                 <div class="col-md-auto p-3">
