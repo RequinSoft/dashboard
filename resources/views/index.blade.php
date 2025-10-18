@@ -85,8 +85,8 @@
                     <div class="d-flex row">
                         <div class="d-flex">
                             <!-- Valores al iniciar la página -->
-                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 pt-1">
+                                Au
                             </div>
                             <div id="courierAu" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
                                 
@@ -94,8 +94,8 @@
                         </div>  
                         <div class="d-flex">
                             <!-- Valores al iniciar la página -->
-                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 pt-1">
+                                Ag
                             </div>
                             <div id="courierAg" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
                                 
@@ -103,8 +103,8 @@
                         </div> 
                         <div class="d-flex">
                             <!-- Valores al iniciar la página -->
-                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 pt-1">
+                                Pb
                             </div>
                             <div id="courierPb" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
                                 
@@ -112,8 +112,8 @@
                         </div>  
                         <div class="d-flex">
                             <!-- Valores al iniciar la página -->
-                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2">
-                                
+                            <div class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 pt-1">
+                                Zn
                             </div>
                             <div id="courierZn" class="col-lg-6 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-end">
                                 
@@ -211,7 +211,7 @@
                         <div class="d-flex">
                             <!-- Valores al iniciar la página -->
                             <div class="col-lg-12 font-sans-serif lh-1 mb-1 fs-1 pe-2 text-center">
-                                Juanicipio
+                                
                             </div>
                         </div>     
 
