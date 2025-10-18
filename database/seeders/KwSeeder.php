@@ -14,7 +14,6 @@ class KwSeeder extends Seeder
      */
     public function run(): void
     {
-
         DemandaActual::create([
             'kw' => 0,
             'factor_potencia' => 0,

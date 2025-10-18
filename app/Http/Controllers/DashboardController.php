@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\ConfigEmpresa;
+use App\Models\ConfigKw;
 
 class DashboardController extends Controller
 {
@@ -71,5 +72,49 @@ class DashboardController extends Controller
         }
 
         return view('admin.index', compact('empresa'));
+    }
+
+    public function energiaIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = ConfigKw::first();
+
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        if($data == null){
+            $data = (object)[
+                'ip' => '',
+                'port' => '',
+                'setpoint' => '',
+                'description' => '',
+            ];
+        }
+
+        
+        return view('admin.energia.index', compact('data', 'empresa'));
+    }
+
+    public function energiaUpdate(Request $request){
+        
+        $request->validate([
+            'kw_maximo' => 'required|numeric',
+            'factor_potencia' => 'required|numeric',
+            'port' => 'required|numeric',
+            'ip' => 'required',
+        ]);
+
+        ConfigKw::updateOrCreate(
+            ['id' => 1],
+            [
+                'kw_maximo' => $request->kw_maximo,
+                'kw_minimo' => $request->kw_minimo,
+            ]
+        );
+
+        return redirect()->route('energia.index')
+            ->with('success', 'Los datos se han actualizado correctamente.');
     }
 }

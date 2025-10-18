@@ -26,4 +26,13 @@ Route::controller(DashboardController::class)->group(function(){
     Route::get('/admin','adminIndex')
         ->name('admin.index');
 
+    /*********************************** */
+    /************Energía *************** */
+    /*********************************** */
+    Route::get('/energia','energiaIndex')
+        ->name('energia.index');
+
+    Route::post('/energia/update','energiaUpdate')
+        ->name('energia.update');
+
 });

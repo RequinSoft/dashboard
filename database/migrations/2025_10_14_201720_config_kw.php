@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('config_kw', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('ip')->nullable();
-            $table->string('port')->nullable();
-            $table->string('setpoint')->nullable();
+            $table->ipAddress('ip')->nullable();
+            $table->unsignedInteger('port')->nullable();
+            $table->unsignedInteger('setpoint')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

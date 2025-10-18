@@ -43,13 +43,13 @@
             </div>
           </a>
 
-          <a class="nav-link" href="}" role="button" data-bs-toggle="" aria-expanded="false">
+          <a class="nav-link" href="{{ route('energia.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
             <div class="d-flex align-items-center">
               <span class="nav-link-icon">
                 <span class="fa fa-bolt">
                 </span>
               </span>
-                <span class="nav-link-text ps-1">SetPoint Demanda</span>
+                <span class="nav-link-text ps-1">Energía</span>
             </div>
           </a>
 

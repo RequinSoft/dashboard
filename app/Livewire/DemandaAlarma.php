@@ -17,8 +17,9 @@ class DemandaAlarma extends Component
     public function updatedDemandaAlarma(){
 
         $demanda = DemandaAlarmaModel::query()->where('activa', 1)->get();
-        
-        if($demanda->isEmpty()){
+        $existe = $demanda->count();
+
+        if($existe == 0){
             $this->tiempo = '';
         } else {
             $inicio = $demanda[0]->created_at;
