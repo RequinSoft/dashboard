@@ -27,6 +27,14 @@
                         </div>
                     @endif
                 </div> 
+
+                <div class="col-sm-6 mb-3">
+                </div>
+
+                <div class="col-sm-6 mb-3 ">
+                    <label class="form-label" for="event-venue">Activo</label>
+                    <input class="form-control form-check-input" role="switch" name="status" type="checkbox" {{ $data->status ? 'checked' : '' }} />
+                </div>
                 
                 <div class="col-sm-6 mb-3">
                     <label class="form-label" for="event-venue">Ip</label>

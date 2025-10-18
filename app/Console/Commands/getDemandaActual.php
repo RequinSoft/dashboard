@@ -30,26 +30,39 @@ class getDemandaActual extends Command
     public function handle()
     {
         $contar = DemandaAlarma::select('id')->count();
-        $demandaActual = random_int(17000, 25000);
-        $factorPotencia = random_int(150, 990) / 100;
+        $demandaActual = 0;
+        $factorPotencia = 0;
 
+        // Validar si la configuración de KW está activa
         $configKw = ConfigKw::first();
         if($configKw){
-
-            $ultimo = DemandaAlarma::select('id', 'kw', 'created_at', 'activa', 'criticidad')->orderBy('id', 'desc')->take(1)->get();
-            
-
-
-
-
+            if($configKw->status == 1){
+                
+                // Si la configuración está activa, obtener la demanda actual
+                $getDemanda = getDemanda($configKw->ip, $configKw->port);
+                $demandaActual = $getDemanda['demanda'];
+                $factorPotencia = $getDemanda['pf'];
+            }
         }
 
+        // Guardar en la base de datos la demanda actual
         DemandaActual::updateOrCreate(
-            ['id' => 1],
             [
-            'kw' => $demandaActual,
-            'factor_potencia' => $factorPotencia,
+                'id' => 1
+            ],
+            [
+                'kw' => $demandaActual,
+                'factor_potencia' => $factorPotencia,
             ]
         );
+
+        /********************************************************** */
+        // Verificar si se debe activar o desactivar la alarma
+        /********************************************************** */
+        $getAlarma = DemandaAlarma::query()
+            ->where('activa', 1)
+            ->count();
+
+
     }
 }

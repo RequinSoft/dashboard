@@ -34,18 +34,61 @@ if(!function_exists('getExchangeRates')) {
     }
 }
 
-if(!function_exists('getDemandaConfig')) {
+if(!function_exists('getDemanda')) {
     /**
      * Fetch KW data from an external device.
      *
      * @return string The KW data.
      */
-    function getDemandaConfig() {
-        // Fetch IP and setPoint from the database
-        // Assuming you have a model named SetPointDemanda
-        // and it has fields 'ip' and 'setpoint'
-        // You may need to adjust this part based on your actual database structure
+    function getDemanda($ip, $port) {
+        // Realizar la solicitud al dispositivo externo
+        $ch = curl_init($ip);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $datos = curl_exec($ch);
+        $conexion = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
 
-        // Example using Eloquent ORM
+        // Recibimos la respuesta en XML
+        if($conexion == '200'){
+            $url = 'http://'.$ip.'/realtime.xml';
+            $xmlString = file_get_contents($url);
+            $xml = new SimpleXMLElement($xmlString);
+            $xml_arreglo = $xml->Page->Item;
+            //print_r($xml_arreglo);            
+    
+            foreach($xml_arreglo as $arreglo){
+                $imp = 'h --> '.$arreglo['h'].', l --> '.$arreglo['l'].', v --> '.$arreglo['v'].'<br>';    
+
+                //Obtener el factor de Potencia
+                if($arreglo['h'] == '22555'){
+                    $pf = (double)$arreglo['v'];
+                }
+
+                //Obtener los KW Totales
+                if($arreglo['h'] == '22543'){
+    
+                    $demanda = (int)$arreglo['v']; 
+                          
+                    $data = [
+                        'ip' => $ip,
+                        'pf' => $pf,
+                        'demanda' => $demanda,
+                    ];
+    
+                    return $data;
+                }
+            }
+        }else{
+            $data = [
+                'ip' => $ip,
+                'demanda' => 'No hay conexión',
+                'pf' => 'No hay conexión',
+            ];
+
+            return $data;
+            
+        }
     }
 }

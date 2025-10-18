@@ -13,5 +13,6 @@ class ConfigKw extends Model
         'ip',
         'port',
         'setpoint',
+        'status',
     ];
 }

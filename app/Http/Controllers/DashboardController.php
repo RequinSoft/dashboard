@@ -90,6 +90,7 @@ class DashboardController extends Controller
                 'port' => '',
                 'setpoint' => '',
                 'description' => '',
+                'status' => 0,
             ];
         }
 
@@ -121,10 +122,13 @@ class DashboardController extends Controller
                 'port' => $request->port,
                 'setpoint' => $request->setpoint,
                 'name' => $request->name,
+                'status' => $request->has('status') ? 1 : 0,
             ]
         );
 
         return redirect()->route('energia.index')
             ->with('success', 'Los datos se han actualizado correctamente.');
     }
+
+
 }

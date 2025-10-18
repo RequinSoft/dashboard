@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 
 use App\Models\DemandaActual as DemandaActualModel;
+use App\Models\ConfigKw;
 
 class DemandaActual extends Component
 {
@@ -21,12 +22,16 @@ class DemandaActual extends Component
         $demanda = DemandaActualModel::find(1);
         $this->demandaActual = $demanda->kw;
 
-        if($this->demandaActual < 18000){
-            $this->demandaColor = 'blue';
-        } elseif($this->demandaActual >= 18001 && $this->demandaActual < 21000){
-            $this->demandaColor = 'orange';
-        } else {
-            $this->demandaColor = 'red';
+        $configKw = ConfigKw::query()
+            ->where('status', 1)
+            ->first();
+
+        if($configKw->status == 1){
+            if($this->demandaActual < $configKw->setpoint){
+                $this->demandaColor = 'blue';
+            } else {
+                $this->demandaColor = 'red';
+            }
         }
     }
 
