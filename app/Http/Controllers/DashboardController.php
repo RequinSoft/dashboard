@@ -99,18 +99,28 @@ class DashboardController extends Controller
 
     public function energiaUpdate(Request $request){
         
-        $request->validate([
-            'kw_maximo' => 'required|numeric',
-            'factor_potencia' => 'required|numeric',
-            'port' => 'required|numeric',
-            'ip' => 'required',
-        ]);
-
+        $request->validate(
+            [
+                'ip' => 'required',
+                'port' => 'required|numeric',
+                'setpoint' => 'required|numeric',
+            ],
+            [
+                'ip.required' => 'El campo IP es obligatorio.',
+                'port.required' => 'El campo Puerto es obligatorio.',
+                'port.numeric' => 'El campo Puerto debe ser un número.',
+                'setpoint.required' => 'El campo Setpoint es obligatorio.',
+                'setpoint.numeric' => 'El campo Setpoint debe ser un número.',
+            ]
+        );
+        
         ConfigKw::updateOrCreate(
             ['id' => 1],
             [
-                'kw_maximo' => $request->kw_maximo,
-                'kw_minimo' => $request->kw_minimo,
+                'ip' => $request->ip,
+                'port' => $request->port,
+                'setpoint' => $request->setpoint,
+                'name' => $request->name,
             ]
         );
 
