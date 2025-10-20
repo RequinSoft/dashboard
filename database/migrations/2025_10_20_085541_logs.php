@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('demanda_actual', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->float('kw');
-            $table->float('factor_potencia');
-            $table->string('mensaje')->nullable();
+            $table->string('tipo');
+            $table->string('mensaje');
+            $table->string('created_by');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demanda_actual');
+        Schema::dropIfExists('logs');
     }
 };

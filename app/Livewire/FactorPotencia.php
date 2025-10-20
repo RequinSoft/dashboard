@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 
 use App\Models\DemandaActual as DemandaActualModel;
+use App\Models\ConfigKw;
 
 class FactorPotencia extends Component
 {
@@ -18,7 +19,17 @@ class FactorPotencia extends Component
     public function updatedFactorPotencia()
     {
         $demanda = DemandaActualModel::find(1);
-        $this->factorPotencia = $demanda->factor_potencia;
+
+        $configKw = ConfigKw::query()
+            ->where('id', 1)
+            ->first();
+
+        if($configKw->status == 1){
+            $this->factorPotencia = $demanda->factor_potencia.' %';
+        }else{
+            $this->factorPotencia = '';
+        }
+
     }
 
     public function render()

@@ -20,18 +20,24 @@ class DemandaActual extends Component
     public function updatedFactorPotencia()
     {
         $demanda = DemandaActualModel::find(1);
-        $this->demandaActual = $demanda->kw;
 
         $configKw = ConfigKw::query()
-            ->where('status', 1)
+            ->where('id', 1)
             ->first();
 
         if($configKw->status == 1){
+            $demanda = number_format($demanda->kw,0);
+            $this->demandaActual = $demanda.' Kw';
+
             if($this->demandaActual < $configKw->setpoint){
                 $this->demandaColor = 'blue';
             } else {
                 $this->demandaColor = 'red';
             }
+        }else if($demanda->mensaje == 'inactivo'){
+            $this->demandaActual = '';
+        }else if($demanda->mensaje == 'No hay Conexión'){
+            $this->demandaActual = 'No hay Conexión';
         }
     }
 

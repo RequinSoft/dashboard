@@ -10,12 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('demanda_actual', function (Blueprint $table) {
+    {        
+        Schema::create('config_pi', function (Blueprint $table) {
             $table->id();
-            $table->float('kw');
-            $table->float('factor_potencia');
-            $table->string('mensaje')->nullable();
+            $table->string('ip_pi');
+            $table->string('port_pi')->nullable();
+            $table->string('ip_af');
+            $table->string('port_af')->nullable();
+            $table->boolean('activo')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demanda_actual');
+        Schema::dropIfExists('config_pi');
     }
 };

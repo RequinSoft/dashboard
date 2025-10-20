@@ -87,8 +87,7 @@ if(!function_exists('getDemanda')) {
                 'pf' => 'No hay conexión',
             ];
 
-            return $data;
-            
+            return $data;            
         }
     }
 }
