@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\AdminController;
 
 Route::controller(DashboardController::class)->group(function(){
 
@@ -26,13 +26,16 @@ Route::controller(DashboardController::class)->group(function(){
     Route::get('/admin','adminIndex')
         ->name('admin.index');
 
-    /*********************************** */
-    /************Energía *************** */
-    /*********************************** */
+});
+
+Route::controller(AdminController::class)->group(function(){
+
+    /************************************ */
+    /************ Energía *************** */
+    /************************************ */
     Route::get('/energia','energiaIndex')
         ->name('energia.index');
 
     Route::post('/energia/update','energiaUpdate')
         ->name('energia.update');
-
 });
