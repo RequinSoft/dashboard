@@ -65,4 +65,16 @@ class AdminController extends Controller
         return redirect()->route('energia.index')
             ->with('success', 'Los datos se han actualizado correctamente.');
     }
+
+    public function usuariosIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.users.index', compact('empresa'));
+    }
 }

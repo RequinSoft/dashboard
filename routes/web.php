@@ -38,4 +38,12 @@ Route::controller(AdminController::class)->group(function(){
 
     Route::post('/energia/update','energiaUpdate')
         ->name('energia.update');
+
+    /************************************* */
+    /************ Usuarios *************** */
+    /************************************* */
+    Route::get('/usuarios', 'usuariosIndex')
+        ->name('usuarios.index');
+        
+
 });

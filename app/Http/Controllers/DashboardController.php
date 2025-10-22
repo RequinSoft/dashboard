@@ -18,6 +18,7 @@ class DashboardController extends Controller
         }else{
             $empresa = $empresa->nombre_empresa;
         }
+        
         return view('index', compact('empresa'));
     }
 
