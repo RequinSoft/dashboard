@@ -34,6 +34,30 @@ class AdminController extends Controller
         return view('admin.energia.index', compact('data', 'empresa'));
     }
 
+    public function energiaEditar(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = ConfigKw::first();
+
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        if($data == null){
+            $data = (object)[
+                'ip' => '',
+                'port' => '',
+                'setpoint' => '',
+                'description' => '',
+                'status' => 0,
+            ];
+        }
+
+        
+        return view('admin.energia.editar', compact('data', 'empresa'));
+    }
+
     public function energiaUpdate(Request $request){
         
         $request->validate(
@@ -75,6 +99,8 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        return view('admin.users.index', compact('empresa'));
+        $usuarios = User::all();
+
+        return view('admin.users.index', compact('empresa', 'usuarios'));
     }
 }

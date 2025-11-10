@@ -28,13 +28,17 @@ Route::controller(DashboardController::class)->group(function(){
 
 });
 
-Route::controller(AdminController::class)->group(function(){
+Route::controller(AdminController::class)
+    ->group(function(){
 
     /************************************ */
     /************ Energía *************** */
     /************************************ */
     Route::get('/energia','energiaIndex')
         ->name('energia.index');
+
+    Route::get('/energia/editar','energiaEditar')
+        ->name('energia.editar');
 
     Route::post('/energia/update','energiaUpdate')
         ->name('energia.update');
@@ -44,6 +48,10 @@ Route::controller(AdminController::class)->group(function(){
     /************************************* */
     Route::get('/usuarios', 'usuariosIndex')
         ->name('usuarios.index');
-        
 
+    Route::get('/usuarios/editar', 'usuariosEditar')
+        ->name('usuarios.editar');
+        
+    Route::post('/usuarios/update', 'usuariosUpdate')
+        ->name('usuarios.update');
 });
