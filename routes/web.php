@@ -49,6 +49,12 @@ Route::controller(AdminController::class)
     Route::get('/usuarios', 'usuariosIndex')
         ->name('usuarios.index');
 
+    Route::get('/usuarios/crear', 'usuariosCrear')
+        ->name('usuarios.crear');
+
+    Route::post('/usuarios/store', 'usuariosStore')
+        ->name('usuarios.store');
+
     Route::get('/usuarios/editar', 'usuariosEditar')
         ->name('usuarios.editar');
         

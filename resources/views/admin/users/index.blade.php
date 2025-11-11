@@ -5,8 +5,16 @@
 @section('content')
 <div class="card mb-3">
     <div class="card-header">
-      <h5 class="mb-0">Usuarios</h5>
+        <div class="col-sm-12 text-end mb-2">
+            <div class="btn-group" role="group" aria-label="Acciones de Usuarios">
+                <a href="{{ route('usuarios.crear') }}" class="btn btn-primary" title="Agregar Usuario">
+                    <span class="fas fa-plus" aria-hidden="true"></span>
+                    <span class="visually-hidden">Agregar Usuario</span>
+                </a>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div id="tableExample2" data-list='{"valueNames":["usuario","nombre","rol", "grupo", "auten", "email", "custom"],"page":25,"pagination":true}'>
@@ -44,7 +52,7 @@
                 <td>{{ $n }}</td>
                 <td class="img text-center">
                     @if($row->img == null)
-                        <img src="{{ asset('assets/img/users/admin.png') }}" class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
+                        <img src="{{ asset('assets/img/team/avatar.png') }}" class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
                     @else
                         <img src="{{ asset('avatars/'.$row->img) }}"  class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
                     @endif
