@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {        
-        User::factory()->create([
+        $sa = User::factory()->create([
             'name' => 'sa',
             'user' => 'sa',
             'authen' => 1,
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('54rtr3007'),
         ]);
 
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'admin',
             'user' => 'admin',
             'authen' => 1,
@@ -56,5 +56,8 @@ class UserSeeder extends Seeder
         // Permisos al Rol de Usuario
         $roleCOM->givePermissionTo($permissionEnergiaIndex);
         $roleCOM->givePermissionTo($permissionUsuariosIndex);
+
+        $sa->assignRole('admin');
+        $admin->assignRole('admin');
     }
 }

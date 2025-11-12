@@ -18,6 +18,16 @@
                         </div>
                     @endif
 
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     @if(session('error'))
                         <div class="alert alert-danger" role="alert">
                             {{ session('error') }}
@@ -29,16 +39,15 @@
                     <div class="avatar avatar-6xl position-relative">
                         <img id="preview" class="img-thumbnail shadow-sm cursor-pointer" 
                             src="{{ asset('assets/img/team/avatar.png') }}" 
-                            width="200" alt="Avatar" 
+                            width="200" alt="Company logo" 
                             onclick="document.getElementById('logo').click()"
                             style="cursor: pointer;" />
                         
                         <div class="mt-3">
-                            <input type="file" class="form-control d-none" id="image" name="image" 
+                            <input type="file" class="form-control d-none" id="logo" name="logo" 
                                 accept="image/*" onchange="previewImage(this)"/>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="col-sm-9 row">
@@ -68,7 +77,7 @@
                         <label class="form-label" for="event-venue">Rol</label>
                         <select class="form-select" id="role" name="role">
                             @foreach($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                <option value="{{ $role->name }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>

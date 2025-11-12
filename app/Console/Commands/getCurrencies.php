@@ -64,7 +64,7 @@ class getCurrencies extends Command
                 $dolar = getExchangeRates($mxn, $usd);
                 $au = getExchangeRates($usd, $xau);
                 $ag = getExchangeRates($usd, $xag);
-                print($dolar);
+                //print($dolar);
                 /*
                 $dolar = $dolar['result'];
                 $au = $au['result'];
@@ -74,15 +74,17 @@ class getCurrencies extends Command
                 if($dolar == null || (isset($dolar['message']) == $msg)){
                     print('Nulo o '.$msg);
                 }else{
-                    $dolar = $dolar['result'];
-                    $au = $au['result'];
-                    $ag = $ag['result'];
 
-                    Conversion::query()->where(['id' => 1])->update(['dolar' => $dolar, 'au' => $au, 'ag' => $ag]);
+                    Conversion::query()->where(['id' => 1])->update([
+                        'usd' => $dolar ? $dolar['result'] : 0,
+                        'au' => $au ? $au['result'] : 0,
+                        'ag' => $ag ? $ag['result'] : 0
+                    ]);
+                    print("Datos actualizados\n");
                 }          
 
             }else{
-                print('Sin actualización de datos');
+                print("Sin actualización de datos\n");
             }
         }        
     }

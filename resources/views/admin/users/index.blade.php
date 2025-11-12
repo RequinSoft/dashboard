@@ -14,8 +14,45 @@
             </div>
         </div>
     </div>
-
 </div>
+@if (session('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
+@endif
+
+@if (session('error'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
+@endif
+
+@if (session('info'))
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ session('info') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
+@endif
+
+@if (session('status'))
+<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+    {{ session('status') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+</div>
+@endif
 
 <div id="tableExample2" data-list='{"valueNames":["usuario","nombre","rol", "grupo", "auten", "email", "custom"],"page":25,"pagination":true}'>
     <div class="table-responsive scrollbar">
@@ -27,7 +64,6 @@
             <th class="text-center sort" data-sort="usuario">Usuario</th>
             <th class="text-center sort" data-sort="nombre">Nombre</th>
             <th class="text-center sort" data-sort="rol">Rol</th>
-            <th class="text-center sort" data-sort="grupo">Grupo</th>
             <th class="text-center sort" data-sort="auten">Autenticación</th>
             <th class="text-center sort" data-sort="email">Email</th>
             <th class="text-center sort" data-sort="custom">Custom</th>
@@ -43,10 +79,10 @@
             @foreach ($usuarios as $row)
             <tr>
                 @php
-                    if($row->status == 'inactivo'){
-                        $color = 'red';
-                    }if($row->status == 'activo'){
+                    if($row->activo){
                         $color = 'green';
+                    }else {
+                        $color = 'red';
                     }
                 @endphp
                 <td>{{ $n }}</td>
@@ -54,13 +90,14 @@
                     @if($row->img == null)
                         <img src="{{ asset('assets/img/team/avatar.png') }}" class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
                     @else
-                        <img src="{{ asset('avatars/'.$row->img) }}"  class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
+                        <img src="{{ asset('avatars/avatars/'.$row->img) }}"  class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
                     @endif
                 </td>
                 <td class="usuario">{{ $row->user }}</td>
                 <td class="nombre">{{ $row->name }}</td>
-                <td class="rol"></td>
-                <td class="grupo"></td>
+                <td class="rol">
+                    {{ $row->roles ? $row->roles->pluck('name')->join(', ') : 'Sin Rol' }}
+                </td>
                 @if ($row->auten == 1)
                     <td class="text-center">Local</td>
                 @else
@@ -70,7 +107,7 @@
                 <td class="custom">{{ $row->comment1 }}</td>
                 <td class="text-center estatus">
                     <p style="color:{{$color}}">
-                        {{ $row->status }}
+                        {{ $row->activo ? 'Activo' : 'Inactivo' }}
                     </p>
                 </td>
                 <td class="text-center">

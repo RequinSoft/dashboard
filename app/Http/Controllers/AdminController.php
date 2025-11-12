@@ -110,9 +110,9 @@ class AdminController extends Controller
         }
 
         if(auth()->user()->user == 'sa'){
-            $usuarios = User::all();
+            $usuarios = User::with('roles')->get();
         }else {
-            $usuarios = User::where('user','!=','sa')->get();
+            $usuarios = User::where('user','!=','sa')->with('roles')->get();
         }
 
         return view('admin.users.index', compact('empresa', 'usuarios'));
@@ -155,25 +155,28 @@ class AdminController extends Controller
                 'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
             ]
         );
-
-        if($request->has('image')){
-            $imagePath = $request->file('image')->store('avatars', 'public');
-            $user['image'] = $imagePath;
-        } else {
-            $imagePath = null;
-        }
+        //return $request->all();
 
         $data = [
             'user' => $request->user,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ];
+
+        if($request->has('logo')){
+            $file = $request->file('logo');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $data['img'] = $imageFilename;
+        }
 
         $user = User::create($data);
 
-        if($request->has('roles')){
-            $user->assignRole($request->roles);
+        if($request->has('role')){
+            //return $request->has('role');
+            $user->assignRole($request->role);
         }
 
         return redirect()->route('usuarios.index')
