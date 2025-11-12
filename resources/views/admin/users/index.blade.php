@@ -111,6 +111,23 @@
                     </p>
                 </td>
                 <td class="text-center">
+                    <a href="{{ route('usuarios.editar', $row->id) }}" class="btn btn-sm btn-primary" title="Editar Usuario">
+                        <span class="fas fa-edit" aria-hidden="true"></span>
+                        <span class="visually-hidden">Editar</span>
+                    </a>
+                    @if ($row->name != 'admin' && $row->name != 'sa')
+                        @if ($row->activo)
+                            <a href="{{ route('usuarios.eliminar', $row->id) }}" class="btn btn-sm btn-danger" title="Eliminar Usuario">
+                                <span class="fas fa-trash" aria-hidden="true"></span>
+                                <span class="visually-hidden">Eliminar</span>
+                            </a>
+                        @else
+                            <a href="{{ route('usuarios.activar', $row->id) }}" class="btn btn-sm btn-success" title="Activar Usuario">
+                                <span class="fas fa-check" aria-hidden="true"></span>
+                                <span class="visually-hidden">Activar</span>
+                            </a>
+                        @endif
+                    @endif
                 </td>
             </tr>
             @php

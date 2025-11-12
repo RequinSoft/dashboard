@@ -8,7 +8,7 @@
       <h5 class="mb-0">Añadir Usuario</h5>
     </div>
     <div class="card-body bg-light">
-        <form  action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
+        <form  action="{{ route('usuarios.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="row gx-2">             
                 <div class="col-sm-12 mb-3">
@@ -23,40 +23,58 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                </div> 
-<!--
-                <div class="col-sm-6 mb-3">
-                </div>
+                </div>   
 
-                <div class="col-sm-6 mb-3 ">
-                    <label class="form-label" for="event-venue">Activo</label>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="status" name="status" {{ $data->status ? 'checked' : '' }}>
+                <div class="col-sm-2">
+                    <div class="avatar avatar-6xl position-relative">
+                        <img id="preview" class="img-thumbnail shadow-sm cursor-pointer" 
+                            src="{{ $user->img ? asset('avatars/avatars/'.$user->img) : asset('assets/img/team/avatar.png') }}" 
+                            width="200" alt="Company logo" 
+                            onclick="document.getElementById('logo').click()"
+                            style="cursor: pointer;" />
+                        
+                        <div class="mt-3">
+                            <input type="file" class="form-control d-none" id="logo" name="logo" 
+                                accept="image/*" onchange="previewImage(this)"/>
+                        </div>
                     </div>
                 </div>
--->                
+                <div class="col-sm-9 row">
+                    <div class="col-sm-4">
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <label class="form-label" for="event-venue">Usuario</label>
+                        <input class="form-control" id="user" name="user" type="text" value="{{ $user->user }}" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Nombre Completo</label>
+                        <input class="form-control" id="name" name="name" type="text" value="{{ $user->name }}" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Email</label>
+                        <input class="form-control" id="email" name="email" type="email" value="{{ $user->email }}" />
+                    </div>
 
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Usuario</label>
-                    <input class="form-control" id="user" name="user" type="text" />
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Nombre Completo</label>
-                    <input class="form-control" id="name" name="name" type="text"    />
-                </div>
 
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Set Point</label>
-                    <input class="form-control" id="setpoint" name="setpoint" type="text" value="{{ $data->setpoint ? $data->setpoint : '' }}" />
-                </div>
-
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Nombre</label>
-                    <input class="form-control" id="description" name="name" type="text" value="{{ $data->name ? $data->name : '' }}" />
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Contraseña</label>
+                        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Confirmar Contraseña</label>
+                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Rol</label>
+                        <select class="form-select" id="role" name="role">
+                            @foreach($roles as $role)
+                                <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                           
                 <div class="col-6 mt-2 text-end">
-                    <a href="{{ route('admin.index') }}" class="btn btn-danger btn-user btn-block">
+                    <a href="{{ route('usuarios.index') }}" class="btn btn-danger btn-user btn-block">
                         Regresar
                     </a>
                 </div> 

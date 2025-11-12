@@ -182,4 +182,107 @@ class AdminController extends Controller
         return redirect()->route('usuarios.index')
             ->with('success', 'El usuario se ha creado correctamente.');
     }
+
+    public function usuariosEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $user = User::find($id);
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $roles = Role::all();
+
+        return view('admin.users.editar', compact('empresa', 'user', 'roles'));
+    }
+
+    public function usuariosUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:users,id',
+                'user' => 'required|unique:users,user,'.$request->id,
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.$request->id,
+            ],
+            [
+                'id.required' => 'El usuario es obligatorio.',
+                'id.exists' => 'El usuario no existe.',
+                'user.required' => 'El campo Usuario es obligatorio.',
+                'user.unique' => 'El Usuario ya está en uso.',
+                'name.required' => 'El campo Nombre Completo es obligatorio.',
+                'email.required' => 'El campo Email es obligatorio.',
+                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
+                'email.unique' => 'El Email ya está en uso.',
+            ]
+        );
+        //return $request->all();
+
+        $user = User::find($request->id);
+
+        $user->user = $request->user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if($request->has('password') && $request->password != ''){
+            $user->password = $request->password;
+        }
+
+        if($request->has('logo')){
+            $file = $request->file('logo');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $user->img = $imageFilename;
+        }
+
+        $user->save();
+
+        // actualizar roles
+        if($request->has('role')){
+            $user->syncRoles([$request->role]);
+        }
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha actualizado correctamente.');
+    }
+
+    public function usuariosActivar($id){
+        
+        $user = User::find($id);
+        
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $user->activo = 1;
+        $user->save();
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha activado correctamente.');
+    }
+
+    public function usuariosEliminar($id){
+        
+        $user = User::find($id);
+        
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $user->activo = 0;
+        $user->save();
+
+        return redirect()->route('usuarios.index')
+            ->with('error', 'El usuario se ha inactivado correctamente.');
+    }
 }

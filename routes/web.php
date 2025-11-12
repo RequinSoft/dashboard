@@ -55,9 +55,15 @@ Route::controller(AdminController::class)
     Route::post('/usuarios/store', 'usuariosStore')
         ->name('usuarios.store');
 
-    Route::get('/usuarios/editar', 'usuariosEditar')
+    Route::get('/usuarios/editar/{id}', 'usuariosEditar')
         ->name('usuarios.editar');
         
     Route::post('/usuarios/update', 'usuariosUpdate')
         ->name('usuarios.update');
+
+    Route::get('/usuarios/eliminar/{id}', 'usuariosEliminar')
+        ->name('usuarios.eliminar');
+
+    Route::get('/usuarios/activar/{id}', 'usuariosActivar')
+        ->name('usuarios.activar');
 });

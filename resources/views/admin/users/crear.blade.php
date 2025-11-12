@@ -38,7 +38,7 @@
                 <div class="col-sm-2">
                     <div class="avatar avatar-6xl position-relative">
                         <img id="preview" class="img-thumbnail shadow-sm cursor-pointer" 
-                            src="{{ asset('assets/img/team/avatar.png') }}" 
+                            src="{{ old('logo') ? asset(old('logo')) : asset('assets/img/team/avatar.png') }}" 
                             width="200" alt="Company logo" 
                             onclick="document.getElementById('logo').click()"
                             style="cursor: pointer;" />
@@ -53,37 +53,37 @@
                 <div class="col-sm-9 row">
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Usuario</label>
-                        <input class="form-control" id="user" name="user" type="text" />
+                        <input class="form-control" id="user" name="user" type="text" value="{{ old('user') }}" />
                     </div>
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Nombre Completo</label>
-                        <input class="form-control" id="name" name="name" type="text"    />
+                        <input class="form-control" id="name" name="name" type="text" value="{{ old('name') }}" />
                     </div>
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Email</label>
-                        <input class="form-control" id="email" name="email" type="email" />
+                        <input class="form-control" id="email" name="email" type="email" value="{{ old('email') }}" />
                     </div>
 
 
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Contraseña</label>
-                        <input class="form-control" id="password" name="password" type="password" />
+                        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
                     </div>
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Confirmar Contraseña</label>
-                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" />
+                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
                     </div>
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Rol</label>
                         <select class="form-select" id="role" name="role">
                             @foreach($roles as $role)
-                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-6 mt-2 text-end">
-                    <a href="{{ route('admin.index') }}" class="btn btn-danger btn-user btn-block">
+                    <a href="{{ route('usuarios.index') }}" class="btn btn-danger btn-user btn-block">
                         Regresar
                     </a>
                 </div> 
