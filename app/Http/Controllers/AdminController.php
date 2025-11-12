@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
+use App\Models\Ldap;
 
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -103,6 +104,7 @@ class AdminController extends Controller
     public function usuariosIndex(){
         
         $empresa = ConfigEmpresa::first();
+
         if($empresa == null){
             $empresa = '';
         }else{
@@ -114,13 +116,15 @@ class AdminController extends Controller
         }else {
             $usuarios = User::where('user','!=','sa')->with('roles')->get();
         }
-
+        
         return view('admin.users.index', compact('empresa', 'usuarios'));
     }
 
     public function usuariosCrear(){
         
         $empresa = ConfigEmpresa::first();
+        $ldap = Ldap::first();
+
         if($empresa == null){
             $empresa = '';
         }else{
@@ -128,8 +132,8 @@ class AdminController extends Controller
         }
 
         $roles = Role::all();
-
-        return view('admin.users.crear', compact('empresa', 'roles'));
+        
+        return view('admin.users.crear', compact('empresa', 'roles', 'ldap'));
     }
 
     public function usuariosStore(Request $request){
@@ -186,6 +190,8 @@ class AdminController extends Controller
     public function usuariosEditar($id){
         
         $empresa = ConfigEmpresa::first();
+        $ldap = Ldap::first();
+
         if($empresa == null){
             $empresa = '';
         }else{
@@ -200,7 +206,7 @@ class AdminController extends Controller
 
         $roles = Role::all();
 
-        return view('admin.users.editar', compact('empresa', 'user', 'roles'));
+        return view('admin.users.editar', compact('empresa', 'user', 'roles', 'ldap'));
     }
 
     public function usuariosUpdate(Request $request){
@@ -271,6 +277,284 @@ class AdminController extends Controller
     }
 
     public function usuariosEliminar($id){
+        
+        $user = User::find($id);
+        
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $user->activo = 0;
+        $user->save();
+
+        return redirect()->route('usuarios.index')
+            ->with('error', 'El usuario se ha inactivado correctamente.');
+    }
+
+    /************************************************* */
+    /******************** LDAP *********************** */
+    /************************************************* */
+    public function ldapIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = Ldap::first();
+
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        if($data == null){
+            $data = (object)[
+                'ip' => '',
+                'port' => '',
+                'domain' => '',
+                'base_dn' => '',
+                'user' => '',
+                'password' => '',
+                'version' => '',
+                'status' => 0,
+            ];
+        }
+
+
+        return view('admin.ldap.index', compact('data', 'empresa'));
+    }
+
+    public function ldapEditar(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = Ldap::first();
+
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        if($data == null){
+            $data = (object)[
+                'ip' => '',
+                'port' => '',
+                'domain' => '',
+                'base_dn' => '',
+                'user' => '',
+                'password' => '',
+                'version' => '',
+                'status' => 0,
+            ];
+        }
+
+
+        return view('admin.ldap.editar', compact('data', 'empresa'));
+    }
+
+    public function ldapUpdate(Request $request){
+        $request->validate(
+            [
+                'ip' => 'required',
+                'port' => 'required|numeric',
+                'domain' => 'required|string',
+            ],
+            [
+                'ip.required' => 'El campo IP es obligatorio.',
+                'port.required' => 'El campo Puerto es obligatorio.',
+                'port.numeric' => 'El campo Puerto debe ser un número.',
+            ]
+        );
+        
+        Ldap::updateOrCreate(
+            ['id' => 1],
+            [
+                'ip' => $request->ip,
+                'port' => $request->port,
+                'domain' => $request->domain,
+                'base_dn' => $request->base_dn,
+                'user' => $request->user,
+                'password' => $request->password,
+                'version' => $request->version,
+                'status' => $request->has('status') ? 1 : 0,
+            ]
+        );
+
+        return redirect()->route('ldap.index')
+            ->with('success', 'Los datos se han actualizado correctamente.');
+    }
+
+    /************************************************* */
+    /****************** Equipos ********************** */
+    /************************************************* */
+    public function equiposIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        if(auth()->user()->user == 'sa'){
+            $usuarios = User::with('roles')->get();
+        }else {
+            $usuarios = User::where('user','!=','sa')->with('roles')->get();
+        }
+
+        return view('admin.users.index', compact('empresa', 'usuarios'));
+    }
+
+    public function equiposCrear(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $roles = Role::all();
+
+        return view('admin.users.crear', compact('empresa', 'roles'));
+    }
+
+    public function equiposStore(Request $request){
+        
+        $request->validate(
+            [
+                'user' => 'required|unique:users,user',
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+                'password_confirmation' => 'required|same:password',
+            ],
+            [
+                'user.required' => 'El campo Usuario es obligatorio.',
+                'user.unique' => 'El Usuario ya está en uso.',
+                'name.required' => 'El campo Nombre Completo es obligatorio.',
+                'email.required' => 'El campo Email es obligatorio.',
+                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
+                'email.unique' => 'El Email ya está en uso.',
+                'password.required' => 'El campo Contraseña es obligatorio.',
+                'password.min' => 'El campo Contraseña debe tener al menos 6 caracteres.',
+                'password_confirmation.required' => 'El campo Confirmar Contraseña es obligatorio.',
+                'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
+            ]
+        );
+        //return $request->all();
+
+        $data = [
+            'user' => $request->user,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if($request->has('logo')){
+            $file = $request->file('logo');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $data['img'] = $imageFilename;
+        }
+
+        $user = User::create($data);
+
+        if($request->has('role')){
+            //return $request->has('role');
+            $user->assignRole($request->role);
+        }
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha creado correctamente.');
+    }
+
+    public function equiposEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $user = User::find($id);
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $roles = Role::all();
+
+        return view('admin.users.editar', compact('empresa', 'user', 'roles'));
+    }
+
+    public function equiposUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:users,id',
+                'user' => 'required|unique:users,user,'.$request->id,
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.$request->id,
+            ],
+            [
+                'id.required' => 'El usuario es obligatorio.',
+                'id.exists' => 'El usuario no existe.',
+                'user.required' => 'El campo Usuario es obligatorio.',
+                'user.unique' => 'El Usuario ya está en uso.',
+                'name.required' => 'El campo Nombre Completo es obligatorio.',
+                'email.required' => 'El campo Email es obligatorio.',
+                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
+                'email.unique' => 'El Email ya está en uso.',
+            ]
+        );
+        //return $request->all();
+
+        $user = User::find($request->id);
+
+        $user->user = $request->user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if($request->has('password') && $request->password != ''){
+            $user->password = $request->password;
+        }
+
+        if($request->has('logo')){
+            $file = $request->file('logo');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $user->img = $imageFilename;
+        }
+
+        $user->save();
+
+        // actualizar roles
+        if($request->has('role')){
+            $user->syncRoles([$request->role]);
+        }
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha actualizado correctamente.');
+    }
+
+    public function equiposActivar($id){
+        
+        $user = User::find($id);
+        
+        if(!$user){
+            return redirect()->route('usuarios.index')
+                ->with('error', 'El usuario no existe.');
+        }
+
+        $user->activo = 1;
+        $user->save();
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha activado correctamente.');
+    }
+
+    public function equiposEliminar($id){
         
         $user = User::find($id);
         

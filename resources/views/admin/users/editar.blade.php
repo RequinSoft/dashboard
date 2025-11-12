@@ -54,6 +54,34 @@
                         <input class="form-control" id="email" name="email" type="email" value="{{ $user->email }}" />
                     </div>
 
+                    @if ($ldap->status == 1 && $user->name != 'admin')
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Autenticación</label>
+                            <select class="form-select" id="auth" name="auth">
+                                <option value="1" {{ old('auth') == 1 ? 'selected' : '' }}>Local</option>
+                                <option value="2" {{ old('auth') == 2 ? 'selected' : '' }}>LDAP</option>
+                            </select>
+                        </div>
+                    @else    
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Autenticación</label>
+                            <input hidden class="form-control" id="auth" name="auth" type="text" value="1" readonly />
+                            <input class="form-control" type="text" value="Local" readonly />
+                        </div>
+                    @endif
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Rol</label>
+                        <select class="form-select" id="role" name="role">
+                            @foreach($roles as $role)
+                                <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Estado</label>
+                        <input class="form-control" id="status" name="status" type="text" value="Activo" readonly />
+                    </div>
+
 
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Contraseña</label>
@@ -62,14 +90,6 @@
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Confirmar Contraseña</label>
                         <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Rol</label>
-                        <select class="form-select" id="role" name="role">
-                            @foreach($roles as $role)
-                                <option value="{{ $role->name }}" {{ old('role') == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
-                            @endforeach
-                        </select>
                     </div>
                 </div>
                           

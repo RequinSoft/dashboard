@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MonedaSeeder::class);
         $this->call(KwSeeder::class);
         $this->call(TagsSeeder::class);
+        $this->call(LdapSeeder::class);
     }
 }

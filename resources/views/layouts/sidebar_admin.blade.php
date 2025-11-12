@@ -44,6 +44,26 @@
               </div>
             </div>
 
+            <!-- parent pages--><a class="nav-link" href="{{ route('ldap.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-address-book">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">Equipos</span>
+              </div>
+            </a>
+
+            <!-- parent pages--><a class="nav-link" href="{{ route('ldap.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-address-book">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">LDAP</span>
+              </div>
+            </a>
+
             <!-- parent pages--><a class="nav-link" href="" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">

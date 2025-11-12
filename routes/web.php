@@ -66,4 +66,41 @@ Route::controller(AdminController::class)
 
     Route::get('/usuarios/activar/{id}', 'usuariosActivar')
         ->name('usuarios.activar');
+
+    /************************************ */
+    /************* LDAP ***************** */
+    /************************************ */
+    Route::get('/ldap','ldapIndex')
+        ->name('ldap.index');
+
+    Route::get('/ldap/editar','ldapEditar')
+        ->name('ldap.editar');
+
+    Route::put('/ldap/update','ldapUpdate')
+        ->name('ldap.update');
+
+    /************************************* */
+    /************ Equipos *************** */
+    /************************************* */
+    Route::get('/equipos', 'equiposIndex')
+        ->name('equipos.index');
+
+    Route::get('/equipos/crear', 'equiposCrear')
+        ->name('equipos.crear');
+
+    Route::post('/equipos/store', 'equiposStore')
+        ->name('equipos.store');
+
+    Route::get('/equipos/editar/{id}', 'equiposEditar')
+        ->name('equipos.editar');
+        
+    Route::post('/equipos/update', 'equiposUpdate')
+        ->name('equipos.update');
+
+    Route::get('/equipos/eliminar/{id}', 'equiposEliminar')
+        ->name('equipos.eliminar');
+
+    Route::get('/equipos/activar/{id}', 'equiposActivar')
+        ->name('equipos.activar');
+
 });
