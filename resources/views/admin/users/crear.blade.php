@@ -73,11 +73,11 @@
                             </select>
                         </div>
                     @else
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Autenticación</label>
-                        <input hidden class="form-control" id="auth" name="auth" type="text" value="1" readonly />
-                        <input class="form-control" type="text" value="Local" readonly />
-                    </div>
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Autenticación</label>
+                            <input hidden class="form-control" id="auth" name="auth" type="text" value="1" readonly />
+                            <input class="form-control" type="text" value="Local" readonly />
+                        </div>
                     @endif
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Rol</label>

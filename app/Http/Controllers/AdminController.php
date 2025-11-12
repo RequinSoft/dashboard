@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
 use App\Models\Ldap;
+use App\Models\Equipo;
 
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -393,78 +394,59 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        if(auth()->user()->user == 'sa'){
-            $usuarios = User::with('roles')->get();
-        }else {
-            $usuarios = User::where('user','!=','sa')->with('roles')->get();
-        }
+        $equipos = Equipo::all();
 
-        return view('admin.users.index', compact('empresa', 'usuarios'));
+        return view('admin.equipos.index', compact('empresa', 'equipos'));
     }
 
     public function equiposCrear(){
         
         $empresa = ConfigEmpresa::first();
+
         if($empresa == null){
             $empresa = '';
         }else{
             $empresa = $empresa->nombre_empresa;
         }
 
-        $roles = Role::all();
-
-        return view('admin.users.crear', compact('empresa', 'roles'));
+        return view('admin.equipos.crear', compact('empresa'));
     }
 
     public function equiposStore(Request $request){
         
         $request->validate(
             [
-                'user' => 'required|unique:users,user',
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6',
-                'password_confirmation' => 'required|same:password',
+                'name' => 'required|unique:equipos,name',
+                'tipo' => 'required',
             ],
             [
-                'user.required' => 'El campo Usuario es obligatorio.',
-                'user.unique' => 'El Usuario ya está en uso.',
-                'name.required' => 'El campo Nombre Completo es obligatorio.',
-                'email.required' => 'El campo Email es obligatorio.',
-                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
-                'email.unique' => 'El Email ya está en uso.',
-                'password.required' => 'El campo Contraseña es obligatorio.',
-                'password.min' => 'El campo Contraseña debe tener al menos 6 caracteres.',
-                'password_confirmation.required' => 'El campo Confirmar Contraseña es obligatorio.',
-                'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
+                'name.required' => 'El campo Equipo es obligatorio.',
+                'name.unique' => 'El Equipo ya está en uso.',
+                'tipo.required' => 'El campo Tipo es obligatorio.',
+                'image.image' => 'El campo Imagen debe ser una imagen.',
+                'image.mimes' => 'El campo Imagen debe ser un archivo de tipo: jpeg, png, jpg.',
+                'image.max' => 'El campo Imagen no debe ser mayor de 2MB.',
             ]
         );
         //return $request->all();
 
         $data = [
-            'user' => $request->user,
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
+            'tipo' => $request->tipo,
         ];
 
-        if($request->has('logo')){
-            $file = $request->file('logo');
+        if($request->has('image')){
+            $file = $request->file('image');
             $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
             // guardar nombre original del archivo
             $imageFilename = $file->getClientOriginalName();
-            $data['img'] = $imageFilename;
+            $data['image'] = $imageFilename;
         }
+        
+        $equipo = Equipo::create($data);
 
-        $user = User::create($data);
-
-        if($request->has('role')){
-            //return $request->has('role');
-            $user->assignRole($request->role);
-        }
-
-        return redirect()->route('usuarios.index')
-            ->with('success', 'El usuario se ha creado correctamente.');
+        return redirect()->route('equipos.index')
+            ->with('success', 'El equipo se ha creado correctamente.');
     }
 
     public function equiposEditar($id){
@@ -476,97 +458,93 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        $user = User::find($id);
-        if(!$user){
-            return redirect()->route('usuarios.index')
-                ->with('error', 'El usuario no existe.');
+        $equipo = Equipo::find($id);
+        if(!$equipo){
+            return redirect()->route('equipos.index')
+                ->with('error', 'El equipo no existe.');
         }
 
-        $roles = Role::all();
-
-        return view('admin.users.editar', compact('empresa', 'user', 'roles'));
+        return view('admin.equipos.editar', compact('empresa', 'equipo'));
     }
 
     public function equiposUpdate(Request $request){
         
         $request->validate(
             [
-                'id' => 'required|exists:users,id',
-                'user' => 'required|unique:users,user,'.$request->id,
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email,'.$request->id,
+                'id' => 'required|exists:equipos,id',
+                'name' => 'required|unique:equipos,name,'.$request->id,
+                'tipo' => 'required',
             ],
             [
-                'id.required' => 'El usuario es obligatorio.',
-                'id.exists' => 'El usuario no existe.',
-                'user.required' => 'El campo Usuario es obligatorio.',
-                'user.unique' => 'El Usuario ya está en uso.',
-                'name.required' => 'El campo Nombre Completo es obligatorio.',
-                'email.required' => 'El campo Email es obligatorio.',
-                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
-                'email.unique' => 'El Email ya está en uso.',
+                'id.required' => 'El equipo es obligatorio.',
+                'id.exists' => 'El equipo no existe.',
+                'name.required' => 'El campo Equipo es obligatorio.',
+                'name.unique' => 'El Equipo ya está en uso.',
+                'tipo.required' => 'El campo Tipo es obligatorio.',
+                'image.image' => 'El campo Imagen debe ser una imagen.',
+                'image.mimes' => 'El campo Imagen debe ser un archivo de tipo: jpeg, png, jpg.',
+                'image.max' => 'El campo Imagen no debe ser mayor de 2MB.',
             ]
         );
         //return $request->all();
 
-        $user = User::find($request->id);
+        $equipo = Equipo::find($request->id);
 
-        $user->user = $request->user;
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $equipo->name = $request->name;
+        $equipo->tipo = $request->tipo;
 
-        if($request->has('password') && $request->password != ''){
-            $user->password = $request->password;
-        }
-
-        if($request->has('logo')){
-            $file = $request->file('logo');
+        if($request->has('image')){
+            $file = $request->file('image');
             $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
             // guardar nombre original del archivo
             $imageFilename = $file->getClientOriginalName();
-            $user->img = $imageFilename;
+            $equipo->image = $imageFilename;
         }
 
-        $user->save();
 
-        // actualizar roles
-        if($request->has('role')){
-            $user->syncRoles([$request->role]);
+        if($request->has('image')){
+            $file = $request->file('image');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $equipo->image = $imageFilename;
         }
 
-        return redirect()->route('usuarios.index')
-            ->with('success', 'El usuario se ha actualizado correctamente.');
+        $equipo->save();
+
+        return redirect()->route('equipos.index')
+            ->with('success', 'El equipo se ha actualizado correctamente.');
     }
 
     public function equiposActivar($id){
         
-        $user = User::find($id);
+        $equipo = Equipo::find($id);
         
-        if(!$user){
-            return redirect()->route('usuarios.index')
-                ->with('error', 'El usuario no existe.');
+        if(!$equipo){
+            return redirect()->route('equipos.index')
+                ->with('error', 'El equipo no existe.');
         }
 
-        $user->activo = 1;
-        $user->save();
+        $equipo->activo = 1;
+        $equipo->save();
 
-        return redirect()->route('usuarios.index')
-            ->with('success', 'El usuario se ha activado correctamente.');
+        return redirect()->route('equipos.index')
+            ->with('success', 'El equipo se ha activado correctamente.');
     }
 
     public function equiposEliminar($id){
         
-        $user = User::find($id);
+        $equipo = Equipo::find($id);
         
-        if(!$user){
-            return redirect()->route('usuarios.index')
-                ->with('error', 'El usuario no existe.');
+        if(!$equipo){
+            return redirect()->route('equipos.index')
+                ->with('error', 'El equipo no existe.');
         }
 
-        $user->activo = 0;
-        $user->save();
+        $equipo->activo = 0;
+        $equipo->save();
 
-        return redirect()->route('usuarios.index')
-            ->with('error', 'El usuario se ha inactivado correctamente.');
+        return redirect()->route('equipos.index')
+            ->with('error', 'El equipo se ha inactivado correctamente.');
     }
 }
