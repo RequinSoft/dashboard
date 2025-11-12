@@ -8,8 +8,14 @@ use App\Models\User;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
 
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+
 class AdminController extends Controller
 {
+    /************************************************* */
+    /****************** Energía ********************* */
+    /************************************************* */
     public function energiaIndex(){
         
         $empresa = ConfigEmpresa::first();
@@ -90,6 +96,10 @@ class AdminController extends Controller
             ->with('success', 'Los datos se han actualizado correctamente.');
     }
 
+
+    /************************************************* */
+    /****************** Usuarios ********************* */
+    /************************************************* */
     public function usuariosIndex(){
         
         $empresa = ConfigEmpresa::first();
@@ -99,8 +109,74 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        $usuarios = User::all();
+        if(auth()->user()->user == 'sa'){
+            $usuarios = User::all();
+        }else {
+            $usuarios = User::where('user','!=','sa')->get();
+        }
 
         return view('admin.users.index', compact('empresa', 'usuarios'));
+    }
+
+    public function usuariosCrear(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $roles = Role::all();
+
+        return view('admin.users.crear', compact('empresa', 'roles'));
+    }
+
+    public function usuariosStore(Request $request){
+        
+        $request->validate(
+            [
+                'user' => 'required|unique:users,user',
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+                'password_confirmation' => 'required|same:password',
+            ],
+            [
+                'user.required' => 'El campo Usuario es obligatorio.',
+                'user.unique' => 'El Usuario ya está en uso.',
+                'name.required' => 'El campo Nombre Completo es obligatorio.',
+                'email.required' => 'El campo Email es obligatorio.',
+                'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
+                'email.unique' => 'El Email ya está en uso.',
+                'password.required' => 'El campo Contraseña es obligatorio.',
+                'password.min' => 'El campo Contraseña debe tener al menos 6 caracteres.',
+                'password_confirmation.required' => 'El campo Confirmar Contraseña es obligatorio.',
+                'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
+            ]
+        );
+
+        if($request->has('image')){
+            $imagePath = $request->file('image')->store('avatars', 'public');
+            $user['image'] = $imagePath;
+        } else {
+            $imagePath = null;
+        }
+
+        $data = [
+            'user' => $request->user,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ];
+
+        $user = User::create($data);
+
+        if($request->has('roles')){
+            $user->assignRole($request->roles);
+        }
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'El usuario se ha creado correctamente.');
     }
 }

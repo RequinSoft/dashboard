@@ -24,37 +24,55 @@
                         </div>
                     @endif
                 </div> 
-<!--
-                <div class="col-sm-6 mb-3">
+
+                <div class="col-sm-2">
+                    <div class="avatar avatar-6xl position-relative">
+                        <img id="preview" class="img-thumbnail shadow-sm cursor-pointer" 
+                            src="{{ asset('assets/img/team/avatar.png') }}" 
+                            width="200" alt="Avatar" 
+                            onclick="document.getElementById('logo').click()"
+                            style="cursor: pointer;" />
+                        
+                        <div class="mt-3">
+                            <input type="file" class="form-control d-none" id="image" name="image" 
+                                accept="image/*" onchange="previewImage(this)"/>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="col-sm-6 mb-3 ">
-                    <label class="form-label" for="event-venue">Activo</label>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="status" name="status" {{ $data->status ? 'checked' : '' }}>
+                <div class="col-sm-9 row">
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Usuario</label>
+                        <input class="form-control" id="user" name="user" type="text" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Nombre Completo</label>
+                        <input class="form-control" id="name" name="name" type="text"    />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Email</label>
+                        <input class="form-control" id="email" name="email" type="email" />
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Contraseña</label>
+                        <input class="form-control" id="password" name="password" type="password" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Confirmar Contraseña</label>
+                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="form-label" for="event-venue">Rol</label>
+                        <select class="form-select" id="role" name="role">
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
--->                
-
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Usuario</label>
-                    <input class="form-control" id="user" name="user" type="text" />
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Nombre Completo</label>
-                    <input class="form-control" id="name" name="name" type="text"    />
-                </div>
-
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Set Point</label>
-                    <input class="form-control" id="setpoint" name="setpoint" type="text" value="{{ $data->setpoint ? $data->setpoint : '' }}" />
-                </div>
-
-                <div class="col-sm-6 mb-3">
-                    <label class="form-label" for="event-venue">Nombre</label>
-                    <input class="form-control" id="description" name="name" type="text" value="{{ $data->name ? $data->name : '' }}" />
-                </div>
-                          
                 <div class="col-6 mt-2 text-end">
                     <a href="{{ route('admin.index') }}" class="btn btn-danger btn-user btn-block">
                         Regresar
@@ -75,4 +93,17 @@
     </div>
 </div>
 <!-- Presentación del Dashboard Juanicipio -->
+@endsection
+@section('script')
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection
