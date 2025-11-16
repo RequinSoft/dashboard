@@ -7,9 +7,8 @@
     <div class="card-header">
         <div class="col-sm-12 text-end mb-2">
             <div class="btn-group" role="group" aria-label="Acciones de Equipos">
-                <a href="{{ route('equipos.crear') }}" class="btn btn-primary" title="Agregar Usuario">
+                <a href="{{ route('equipos.crear') }}" class="btn btn-primary" title="Agregar Equipo">
                     <span class="fas fa-plus" aria-hidden="true"></span>
-                    <span class="visually-hidden">Agregar Usuario</span>
                 </a>
             </div>
         </div>
@@ -61,7 +60,6 @@
           <tr>
             <th class="text-center sort" >N°</th>
             <th class="text-center sort" data-sort="image">Equipo</th>
-            <th class="text-center sort" data-sort="equipo">Equipo</th>
             <th class="text-center sort" data-sort="tipo">Tipo</th>
             <th class="text-center sort" data-sort="activo">Estado</th>
             <th class="text-center sort" data-sort="acciones">Acciones</th>
@@ -82,13 +80,6 @@
                     }
                 @endphp
                 <td>{{ $n }}</td>
-                <td class="img text-center">
-                    @if($row->image == null)
-                        <img src="{{ asset('assets/img/team/avatar.png') }}" class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
-                    @else
-                        <img src="{{ asset('avatars/avatars/'.$row->image   ) }}"  class="img-fluid rounded-circle" style="width:40px; height:40px; object-fit:cover;">
-                    @endif
-                </td>
                 <td class="equipo">{{ $row->name }}</td>
                 <td class="nombre">{{ $row->tipo }}</td>
                 <td class="text-center estatus">

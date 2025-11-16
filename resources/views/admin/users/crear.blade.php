@@ -75,7 +75,7 @@
                     @else
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Autenticación</label>
-                            <input hidden class="form-control" id="auth" name="auth" type="text" value="1" readonly />
+                            <input hidden class="form-control" id="authen" name="authen" type="text" value="1" readonly />
                             <input class="form-control" type="text" value="Local" readonly />
                         </div>
                     @endif
@@ -93,14 +93,38 @@
                     </div>
 
 
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Contraseña</label>
-                        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
+                    <div id="passwordFields" style="{{ old('auth') == 2 ? 'display:none;' : '' }}" class="row w-100 mt-3">
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Contraseña</label>
+                            <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Confirmar Contraseña</label>
+                            <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Confirmar Contraseña</label>
-                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
-                    </div>
+
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var authEl = document.getElementById('auth');
+                        var pwWrapper = document.getElementById('passwordFields');
+                        if (!authEl || !pwWrapper) return;
+
+                        function togglePasswordFields() {
+                            if (authEl.value === '2') {
+                                pwWrapper.style.display = 'none';
+                            } else {
+                                pwWrapper.style.display = '';
+                            }
+                        }
+
+                        // Initial state
+                        togglePasswordFields();
+
+                        // Listen for changes (works for select or hidden/text input)
+                        authEl.addEventListener('change', togglePasswordFields);
+                    });
+                    </script>
                 </div>
                 <div class="col-6 mt-2 text-end">
                     <a href="{{ route('usuarios.index') }}" class="btn btn-danger btn-user btn-block">

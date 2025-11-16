@@ -22,7 +22,7 @@ class LdapSeeder extends Seeder
             'user' => 'admin',
             'password' => 'password',  
             'version' => 3,
-            'status' => true,
+            'status' => false,
         ]);
     }
 }

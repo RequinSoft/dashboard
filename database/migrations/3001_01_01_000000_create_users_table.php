@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('authen')->default(1);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->boolean('activo')->default(true);
             $table->rememberToken();
             $table->timestamps();

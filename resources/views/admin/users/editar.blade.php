@@ -5,7 +5,7 @@
 @section('content')
 <div class="card mb-3">
     <div class="card-header">
-      <h5 class="mb-0">Añadir Usuario</h5>
+      <h5 class="mb-0">Editar Usuario</h5>
     </div>
     <div class="card-body bg-light">
         <form  action="{{ route('usuarios.update') }}" method="POST" enctype="multipart/form-data">
@@ -57,7 +57,7 @@
                     @if ($ldap->status == 1 && $user->name != 'admin')
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Autenticación</label>
-                            <select class="form-select" id="auth" name="auth">
+                            <select class="form-select" id="authen" name="authen">
                                 <option value="1" {{ old('auth') == 1 ? 'selected' : '' }}>Local</option>
                                 <option value="2" {{ old('auth') == 2 ? 'selected' : '' }}>LDAP</option>
                             </select>
@@ -113,4 +113,17 @@
     </div>
 </div>
 <!-- Presentación del Dashboard Juanicipio -->
+@endsection
+@section('script')
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

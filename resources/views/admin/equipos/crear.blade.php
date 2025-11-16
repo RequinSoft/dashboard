@@ -35,21 +35,6 @@
                     @endif
                 </div> 
 
-                <div class="col-sm-2">
-                    <div class="avatar avatar-6xl position-relative">
-                        <img id="preview" class="img-thumbnail shadow-sm cursor-pointer" 
-                            src="{{ old('image') ? asset(old('image')) : asset('assets/img/team/avatar.png') }}" 
-                            width="200" alt="Company logo" 
-                            onclick="document.getElementById('image').click()"
-                            style="cursor: pointer;" />
-                        
-                        <div class="mt-3">
-                            <input type="file" class="form-control d-none" id="image" name="image" 
-                                accept="image/*" onchange="previewImage(this)"/>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-sm-9 row">
                     <div class="col-sm-4">
                         <label class="form-label" for="event-venue">Equipo</label>
@@ -71,12 +56,12 @@
                     </div>
 
                 </div>
-                <div class="col-6 mt-2 text-end">
+                <div class="col-6 mt-3 text-end">
                     <a href="{{ route('equipos.index') }}" class="btn btn-danger btn-user btn-block">
                         Regresar
                     </a>
                 </div> 
-                <div class="col-6 mt-2">
+                <div class="col-6 mt-3">
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                         Guardar
                     </button>
@@ -91,17 +76,4 @@
     </div>
 </div>
 <!-- Presentación del Dashboard Juanicipio -->
-@endsection
-@section('script')
-<script>
-    function previewImage(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 @endsection

@@ -98,7 +98,7 @@
                 <td class="rol">
                     {{ $row->roles ? $row->roles->pluck('name')->join(', ') : 'Sin Rol' }}
                 </td>
-                @if ($row->auten == 1)
+                @if ($row->authen == 1)
                     <td class="text-center">Local</td>
                 @else
                     <td class="text-center">LDAP</td>

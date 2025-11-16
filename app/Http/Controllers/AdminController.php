@@ -144,8 +144,6 @@ class AdminController extends Controller
                 'user' => 'required|unique:users,user',
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6',
-                'password_confirmation' => 'required|same:password',
             ],
             [
                 'user.required' => 'El campo Usuario es obligatorio.',
@@ -154,19 +152,31 @@ class AdminController extends Controller
                 'email.required' => 'El campo Email es obligatorio.',
                 'email.email' => 'El campo Email debe ser una dirección de correo electrónico válida.',
                 'email.unique' => 'El Email ya está en uso.',
-                'password.required' => 'El campo Contraseña es obligatorio.',
-                'password.min' => 'El campo Contraseña debe tener al menos 6 caracteres.',
-                'password_confirmation.required' => 'El campo Confirmar Contraseña es obligatorio.',
-                'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
             ]
         );
         //return $request->all();
+        if($request->password){
+            $request->validate(
+                [
+                    'password' => 'required|min:6',
+                    'password_confirmation' => 'required|same:password',
+                ],
+                [
+                    'password.required' => 'El campo Contraseña es obligatorio.',
+                    'password.min' => 'El campo Contraseña debe tener al menos 6 caracteres.',
+                    'password_confirmation.required' => 'El campo Confirmar Contraseña es obligatorio.',
+                    'password_confirmation.same' => 'El campo Confirmar Contraseña debe coincidir con la Contraseña.',
+                ]
+            );
+        }
 
         $data = [
             'user' => $request->user,
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'authen' => $request->auth,
+            'activo' => 1,
         ];
 
         if($request->has('logo')){
@@ -237,6 +247,7 @@ class AdminController extends Controller
         $user->user = $request->user;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->authen = $request->authen;
 
         if($request->has('password') && $request->password != ''){
             $user->password = $request->password;
