@@ -111,4 +111,16 @@ Route::controller(AdminController::class)
 
     Route::get('/molienda/editar/{id}', 'moliendaEditar')
         ->name('molienda.editar');
+
+    Route::post('/molienda/update', 'moliendaUpdate')
+        ->name('molienda.update');
+
+    Route::get('/molienda/configuracion', 'moliendaConfiguracion')
+        ->name('molienda.configuracion');
+
+    Route::get('/molienda/configuracion/editar', 'moliendaConfiguracionEditar')
+        ->name('molienda.configuracion.editar');
+
+    Route::post('/molienda/configuracion/update', 'moliendaConfiguracionUpdate')
+        ->name('molienda.configuracion.update');
 });

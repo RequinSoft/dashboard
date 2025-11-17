@@ -118,30 +118,282 @@
                         </div>
 
                         <div class="tab-pane" id="crm-abril" role="tabpanel" aria-labelledby="crm-abril-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($abril as $abril)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $abril->fecha ? \Carbon\Carbon::parse($abril->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $abril->plan }}</td>
+                                                    <td class="text-center">{{ $abril->primer_turno }}</td>
+                                                    <td class="text-center">{{ $abril->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $abril->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-mayo" role="tabpanel" aria-labelledby="crm-mayo-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($mayo as $mayo)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $mayo->fecha ? \Carbon\Carbon::parse($mayo->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $mayo->plan }}</td>
+                                                    <td class="text-center">{{ $mayo->primer_turno }}</td>
+                                                    <td class="text-center">{{ $mayo->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $mayo->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-junio" role="tabpanel" aria-labelledby="crm-junio-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($junio as $junio)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $junio->fecha ? \Carbon\Carbon::parse($junio->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $junio->plan }}</td>
+                                                    <td class="text-center">{{ $junio->primer_turno }}</td>
+                                                    <td class="text-center">{{ $junio->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $junio->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-julio" role="tabpanel" aria-labelledby="crm-julio-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($julio as $julio)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $julio->fecha ? \Carbon\Carbon::parse($julio->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $julio->plan }}</td>
+                                                    <td class="text-center">{{ $julio->primer_turno }}</td>
+                                                    <td class="text-center">{{ $julio->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $julio->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-agosto" role="tabpanel" aria-labelledby="crm-agosto-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($agosto as $agosto)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $agosto->fecha ? \Carbon\Carbon::parse($agosto->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $agosto->plan }}</td>
+                                                    <td class="text-center">{{ $agosto->primer_turno }}</td>
+                                                    <td class="text-center">{{ $agosto->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $agosto->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-septiembre" role="tabpanel" aria-labelledby="crm-septiembre-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($septiembre as $septiembre)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $septiembre->fecha ? \Carbon\Carbon::parse($septiembre->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $septiembre->plan }}</td>
+                                                    <td class="text-center">{{ $septiembre->primer_turno }}</td>
+                                                    <td class="text-center">{{ $septiembre->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $septiembre->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-octubre" role="tabpanel" aria-labelledby="crm-octubre-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($octubre as $octubre)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $octubre->fecha ? \Carbon\Carbon::parse($octubre->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $octubre->plan }}</td>
+                                                    <td class="text-center">{{ $octubre->primer_turno }}</td>
+                                                    <td class="text-center">{{ $octubre->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $octubre->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-noviembre" role="tabpanel" aria-labelledby="crm-noviembre-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($noviembre as $noviembre)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $noviembre->fecha ? \Carbon\Carbon::parse($noviembre->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $noviembre->plan }}</td>
+                                                    <td class="text-center">{{ $noviembre->primer_turno }}</td>
+                                                    <td class="text-center">{{ $noviembre->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $noviembre->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="crm-diciembre" role="tabpanel" aria-labelledby="crm-diciembre-tab">
+                            <div id="tableExample2" data-list='{"valueNames":["plan","turno1","turno2","acciones"],"page":50,"pagination":true}'>
+                                <div class="table-responsive scrollbar">
+                                    <table class="table table-bordered table-striped fs--2 mb-0">
+                                        <thead class="bg-500 text-900">
+                                        <tr>
+                                            <th class="text-center sort" >Día</th>
+                                            <th class="text-center sort" data-sort="plan">Plan</th>
+                                            <th class="text-center sort" data-sort="turno1">Turno 1</th>
+                                            <th class="text-center sort" data-sort="turno2">Turno 2</th>
+                                            <th class="text-center sort" data-sort="acciones">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                            @foreach($diciembre as $diciembre)
+                                                <tr class="btn-reveal-trigger">
+                                                    <td class="text-center">{{ $diciembre->fecha ? \Carbon\Carbon::parse($diciembre->fecha)->format('d') : '' }}</td>
+                                                    <td class="text-center">{{ $diciembre->plan }}</td>
+                                                    <td class="text-center">{{ $diciembre->primer_turno }}</td>
+                                                    <td class="text-center">{{ $diciembre->segundo_turno }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('molienda.editar', $diciembre->id) }}" class="btn btn-sm btn-primary">Editar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
                       </div>

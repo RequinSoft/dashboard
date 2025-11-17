@@ -10,6 +10,7 @@ use App\Models\ConfigKw;
 use App\Models\Ldap;
 use App\Models\Equipo;
 use App\Models\Molienda;
+use App\Models\MoliendaConfiguracion;
 
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -607,5 +608,95 @@ class AdminController extends Controller
         }
 
         return view('admin.molienda.editar', compact('empresa', 'molienda'));
+    }
+
+    public function moliendaUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:moliendas,id',
+                'fecha' => 'required|date',
+                'plan' => 'required|numeric',
+            ],
+            [
+                'id.required' => 'El registro es obligatorio.',
+                'id.exists' => 'El registro no existe.',
+                'fecha.required' => 'El campo Fecha es obligatorio.',
+                'fecha.date' => 'El campo Fecha debe ser una fecha válida.',
+                'plan.required' => 'El campo Toneladas es obligatorio.',
+                'plan.numeric' => 'El campo Toneladas debe ser un número.',
+            ]
+        );
+        //return $request->all();
+
+        $molienda = Molienda::find($request->id);
+
+        $molienda->fecha = $request->fecha;
+        $molienda->toneladas = $request->toneladas;
+        $molienda->humedad = $request->humedad;
+
+        $molienda->save();
+
+        return redirect()->route('molienda.index')
+            ->with('success', 'El registro de molienda se ha actualizado correctamente.');
+    }
+
+    public function moliendaConfiguracion(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $data = MoliendaConfiguracion::first();
+
+        return view('admin.molienda.configuracion', compact('empresa', 'data'));
+    }
+
+    public function moliendaConfiguracionEditar(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $data = MoliendaConfiguracion::first();
+
+        return view('admin.molienda.configuracionEdit', compact('empresa', 'data'));
+    }
+
+    public function moliendaConfiguracionUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'plan' => 'required|numeric',
+            ],
+            [
+                'plan.required' => 'El campo Plan es obligatorio.',
+                'plan.numeric' => 'El campo Plan debe ser un número.',
+            ]
+        );
+
+        $data = MoliendaConfiguracion::first();
+
+        if(!$data){
+            $data = new MoliendaConfiguracion();
+        }
+
+        $data->plan = $request->plan;
+        if($request->has('activo')){
+            $data->activo = 1;
+        }else{
+            $data->activo = 0;
+        }
+
+        $data->save();
+
+        return redirect()->route('molienda.configuracion')
+            ->with('success', 'La configuración de molienda se ha actualizado correctamente.');
     }
 }

@@ -63,16 +63,26 @@
                 <span class="nav-link-text ps-1">LDAP</span>
               </div>
             </a>
-
-            <!-- parent pages--><a class="nav-link" href="{{ route('molienda.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
-              <div class="d-flex align-items-center">
-                <span class="nav-link-icon">
-                  <span class="fas fa-globe">
-                  </span>
-                </span>
-                <span class="nav-link-text ps-1">Molienda</span>
-              </div>
-            </a>
+            <li class="nav-item">
+              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="dashboard">
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Dashboard</span>
+                </div>
+              </a>
+              <ul class="nav collapse show" id="dashboard">
+                <li class="nav-item"><a class="nav-link active" href="{{ route('molienda.index') }}" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos de Molienda</span>
+                    </div>
+                  </a>
+                  <!-- more inner pages-->
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('molienda.configuracion') }}" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Configuración de Molienda</span>
+                    </div>
+                  </a>
+                  <!-- more inner pages-->
+                </li>
+              </ul>
+            </li>
 
             <!-- parent pages--><a class="nav-link" href="" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
