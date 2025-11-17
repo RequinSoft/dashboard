@@ -9,6 +9,7 @@ use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
 use App\Models\Ldap;
 use App\Models\Equipo;
+use App\Models\Molienda;
 
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -564,6 +565,7 @@ class AdminController extends Controller
     /************************************************* */
     public function moliendaIndex(){
         
+        $anio = date('Y');
         $empresa = ConfigEmpresa::first();
         if($empresa == null){
             $empresa = '';
@@ -571,6 +573,39 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        return view('admin.molienda.index', compact('empresa'));
+        $enero = Molienda::whereMonth('fecha', 1)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $febrero = Molienda::whereMonth('fecha', 2)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $marzo = Molienda::whereMonth('fecha', 3)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $abril = Molienda::whereMonth('fecha', 4)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $mayo = Molienda::whereMonth('fecha', 5)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $junio = Molienda::whereMonth('fecha', 6)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $julio = Molienda::whereMonth('fecha', 7)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $agosto = Molienda::whereMonth('fecha', 8)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $septiembre = Molienda::whereMonth('fecha', 9)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $octubre = Molienda::whereMonth('fecha', 10)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $noviembre = Molienda::whereMonth('fecha', 11)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+        $diciembre = Molienda::whereMonth('fecha', 12)->whereYear('fecha', $anio)->orderBy('fecha')->get();
+
+        //return $enero;
+        
+        return view('admin.molienda.index', compact('empresa', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'));
+    }
+
+    public function moliendaEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $molienda = Molienda::find($id);
+        if(!$molienda){
+            return redirect()->route('molienda.index')
+                ->with('error', 'El registro de molienda no existe.');
+        }
+
+        return view('admin.molienda.editar', compact('empresa', 'molienda'));
     }
 }

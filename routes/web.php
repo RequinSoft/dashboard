@@ -103,4 +103,12 @@ Route::controller(AdminController::class)
     Route::get('/equipos/activar/{id}', 'equiposActivar')
         ->name('equipos.activar');
 
+    /************************************* */
+    /************ Molienda *************** */
+    /************************************* */
+    Route::get('/molienda', 'moliendaIndex')
+        ->name('molienda.index');
+
+    Route::get('/molienda/editar/{id}', 'moliendaEditar')
+        ->name('molienda.editar');
 });

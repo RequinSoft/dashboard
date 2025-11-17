@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->float('plan');
-            $table->float('primer_turno');
-            $table->float('segundo_turno');
+            $table->float('primer_turno')->nullable();
+            $table->float('segundo_turno')->nullable();
             $table->timestamps();
         });
     }
