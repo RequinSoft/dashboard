@@ -558,4 +558,19 @@ class AdminController extends Controller
         return redirect()->route('equipos.index')
             ->with('error', 'El equipo se ha inactivado correctamente.');
     }
+
+    /************************************************* */
+    /****************** Molienda ********************* */
+    /************************************************* */
+    public function moliendaIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.molienda.index', compact('empresa'));
+    }
 }

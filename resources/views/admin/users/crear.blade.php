@@ -67,9 +67,9 @@
                     @if($ldap->status)
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Autenticación</label>
-                            <select class="form-select" id="auth" name="auth">
-                                <option value="1" {{ old('auth') == 1 ? 'selected' : '' }}>Local</option>
-                                <option value="2" {{ old('auth') == 2 ? 'selected' : '' }}>LDAP</option>
+                            <select class="form-select" id="authen" name="authen">
+                                <option value="1" {{ old('authen') == 1 ? 'selected' : '' }}>Local</option>
+                                <option value="2" {{ old('authen') == 2 ? 'selected' : '' }}>LDAP</option>
                             </select>
                         </div>
                     @else
@@ -93,7 +93,7 @@
                     </div>
 
 
-                    <div id="passwordFields" style="{{ old('auth') == 2 ? 'display:none;' : '' }}" class="row w-100 mt-3">
+                    <div id="passwordFields" style="{{ old('authen') == 2 ? 'display:none;' : '' }}" class="row w-100 mt-3">
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Contraseña</label>
                             <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
@@ -106,7 +106,7 @@
 
                     <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        var authEl = document.getElementById('auth');
+                        var authEl = document.getElementById('authen');
                         var pwWrapper = document.getElementById('passwordFields');
                         if (!authEl || !pwWrapper) return;
 

@@ -58,8 +58,8 @@
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Autenticación</label>
                             <select class="form-select" id="authen" name="authen">
-                                <option value="1" {{ old('auth') == 1 ? 'selected' : '' }}>Local</option>
-                                <option value="2" {{ old('auth') == 2 ? 'selected' : '' }}>LDAP</option>
+                                <option value="1" {{ old('authen') == 1 ? 'selected' : '' }}>Local</option>
+                                <option value="2" {{ old('authen') == 2 ? 'selected' : '' }}>LDAP</option>
                             </select>
                         </div>
                     @else    
@@ -82,15 +82,38 @@
                         <input class="form-control" id="status" name="status" type="text" value="Activo" readonly />
                     </div>
 
+                    <div id="passwordFields" style="{{ old('authen') == 2 ? 'display:none;' : '' }}" class="row w-100 mt-3">
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Contraseña</label>
+                            <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="form-label" for="event-venue">Confirmar Contraseña</label>
+                            <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
+                        </div>
+                    </div>
 
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Contraseña</label>
-                        <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" />
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Confirmar Contraseña</label>
-                        <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" />
-                    </div>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var authEl = document.getElementById('authen');
+                        var pwWrapper = document.getElementById('passwordFields');
+                        if (!authEl || !pwWrapper) return;
+
+                        function togglePasswordFields() {
+                            if (authEl.value === '2') {
+                                pwWrapper.style.display = 'none';
+                            } else {
+                                pwWrapper.style.display = '';
+                            }
+                        }
+
+                        // Initial state
+                        togglePasswordFields();
+
+                        // Listen for changes (works for select or hidden/text input)
+                        authEl.addEventListener('change', togglePasswordFields);
+                    });
+                    </script>
                 </div>
                           
                 <div class="col-6 mt-2 text-end">
