@@ -54,55 +54,6 @@
               </div>
             </a>
 
-            <!-- parent pages--><a class="nav-link" href="{{ route('ldap.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
-              <div class="d-flex align-items-center">
-                <span class="nav-link-icon">
-                  <span class="fas fa-address-book">
-                  </span>
-                </span>
-                <span class="nav-link-text ps-1">LDAP</span>
-              </div>
-            </a>
-
-            <!-- Plan de Molienda -->            
-            <li class="nav-item">
-              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#molienda" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="molienda">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Molienda</span>
-                </div>
-              </a>
-              <ul class="nav collapse show" id="molienda">
-                <li class="nav-item"><a class="nav-link" href="{{ route('molienda.index') }}" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos Molienda</span>
-                    </div>
-                  </a>
-                  <!-- more inner pages-->
-                </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('molienda.configuracion') }}" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Configuración Molienda</span>
-                    </div>
-                  </a>
-                  <!-- more inner pages-->
-                </li>
-              </ul>
-            </li>
-
-            <!-- Plan de Barrenación -->            
-            <li class="nav-item">
-              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#dashboard" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="dashboard">
-                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-braille"></span></span><span class="nav-link-text ps-1">Barrenación</span>
-                </div>
-              </a>
-              <ul class="nav collapse show" id="dashboard">
-                <li class="nav-item"><a class="nav-link" href="{{ route('barrenacion.index') }}" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos Barrenación</span>
-                    </div>
-                  </a>
-                  <!-- more inner pages-->
-                </li>
-              </ul>
-            </li>
-
-
             <a class="nav-link" href="{{ route('energia.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -113,6 +64,17 @@
               </div>
             </a>
 
+            <!-- parent pages--><a class="nav-link" href="{{ route('ldap.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-address-book">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">LDAP</span>
+              </div>
+            </a>
+            </li>
+
             <a class="nav-link" href="{{ route('pi.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
@@ -122,6 +84,64 @@
                   <span class="nav-link-text ps-1">PI</span>
               </div>
             </a>
+
+            <a class="nav-link" href="{{ route('pi.tags') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fa fa-tty">
+                  </span>
+                </span>
+                  <span class="nav-link-text ps-1">Tags</span>
+              </div>
+            </a>
+
+            <!-- parent pages--><a class="nav-link" href="{{ route('molienda.configuracion') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-cogs">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">Molienda</span>
+              </div>
+            </a>
+            </li>
+
+
+          <li class="nav-item">
+            <!-- label-->
+            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+              <div class="col-auto navbar-vertical-label">Administración
+              </div>
+              <div class="col ps-0">
+                <hr class="mb-0 navbar-vertical-divider" />
+              </div>
+            </div>
+
+
+            <!-- parent pages--><a class="nav-link" href="{{ route('barrenacion.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-braille">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">Barrenación</span>
+              </div>
+            </a>
+            </li>
+
+            <!-- parent pages--><a class="nav-link" href="{{ route('molienda.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fas fa-globe">
+                  </span>
+                </span>
+                <span class="nav-link-text ps-1">Molienda</span>
+              </div>
+            </a>
+            </li>
+            
+
+
 
             <!-- parent pages--><a class="nav-link" href="{{ route('usuarios.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
             <div class="d-flex align-items-center">

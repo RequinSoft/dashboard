@@ -12,6 +12,7 @@ use App\Models\Equipo;
 use App\Models\Ldap;
 use App\Models\Molienda;
 use App\Models\MoliendaConfiguracion;
+use App\Models\Tags;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Hash;
@@ -179,7 +180,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'authen' => $request->auth,
+            'authen' => $request->authen,
             'activo' => 1,
         ];
 
@@ -803,6 +804,54 @@ class AdminController extends Controller
             ->with('success', 'El plan de barrenación se ha creado correctamente.');
     }
 
+    public function barrenacionEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $data = BarrenosPlan::find($id);
+        if(!$data){
+            return redirect()->route('barrenacion.index')
+                ->with('error', 'El registro de barrenación no existe.');
+        }
+
+        return view('admin.barrenacion.editar', compact('empresa', 'data'));
+    }
+
+    public function barrenacionUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:barrenos_plan,id',
+                'barrenos_plan' => 'required|numeric',
+                'fecha' => 'required|date',
+            ],
+            [
+                'id.required' => 'El registro es obligatorio.',
+                'id.exists' => 'El registro no existe.',
+                'barrenos_plan.required' => 'El campo Plan de Barrenos es obligatorio.',
+                'barrenos_plan.numeric' => 'El campo Plan de Barrenos debe ser un número.',
+                'fecha.required' => 'El campo Fecha es obligatorio.',
+                'fecha.date' => 'El campo Fecha debe ser una fecha válida.',
+            ]
+        );
+        //return $request->all();
+
+        $data = BarrenosPlan::find($request->id);
+
+        $data->barrenos_plan = $request->barrenos_plan;
+        //$data->fecha = $request->fecha;
+
+        $data->save();
+
+        return redirect()->route('barrenacion.tabla', $data->equipo_id)
+            ->with('success', 'El registro de barrenación se ha actualizado correctamente.');
+    }
+
     /************************************************* */
     /************************ PI ********************* */
     /************************************************* */
@@ -866,5 +915,61 @@ class AdminController extends Controller
 
         return redirect()->route('pi.index')
             ->with('success', 'Los datos se han actualizado correctamente.');
+    }
+
+    public function piTags(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = Tags::all();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.pi.tags', compact('empresa', 'data'));
+    }
+
+    public function piTagsEdit($id){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = Tags::find($id);
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.pi.editTag', compact('empresa', 'data'));
+    }
+
+    public function piTagsUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:tags,id',
+                'tag_name' => 'required',
+            ],
+            [
+                'id.required' => 'El registro es obligatorio.',
+                'id.exists' => 'El registro no existe.',
+                'tag_name.required' => 'El campo Nombre del Tag es obligatorio.',
+            ]
+        );
+        
+        $pi = ConfigPi::find(1);
+        $data = Tags::find($request->id);
+
+        $data->tag = $request->tag;
+        $data->description = $request->description;
+
+        if($pi->activo){
+            $webId = getWebId($request->tag, $pi->ip_pi, $pi->ip_af, $pi->user, $pi->password);
+            $data->webid = $webId;
+        }
+        $data->save();
+
+        return redirect()->route('pi.tags')
+            ->with('success', 'Los datos del tag se han actualizado correctamente.');
     }
 }

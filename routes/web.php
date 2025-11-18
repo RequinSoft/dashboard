@@ -29,6 +29,7 @@ Route::controller(DashboardController::class)->group(function(){
 });
 
 Route::controller(AdminController::class)
+    //->middleware('session.expired')
     ->group(function(){
 
     /************************************ */
@@ -165,4 +166,13 @@ Route::controller(AdminController::class)
 
     Route::post('/pi/update/', 'piUpdate')
         ->name('pi.update');
+
+    Route::get('/pi/tags/', 'piTags')
+        ->name('pi.tags');
+
+    Route::get('/pi/tags/edit/{id}', 'piTagsEdit')
+        ->name('pi.tags.edit');
+
+    Route::post('/pi/tags/update/', 'piTagsUpdate')
+        ->name('pi.tags.update');
 });

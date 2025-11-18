@@ -22,11 +22,11 @@ class DashboardController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        $equiposBarrenacion = Equipo::query()->where('tipo', 'Perforadora')
+        $equiposBarrenacion = Equipo::with('drill_plan', 'drill_executed')->where('tipo', 'Perforadora')
             ->where('activo', 1)
             ->get();
 
-        
+        //return $equiposBarrenacion;
         return view('index', compact('empresa', 'equiposBarrenacion'));
     }
 

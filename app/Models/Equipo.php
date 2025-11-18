@@ -16,13 +16,13 @@ class Equipo extends Model
         'image'
     ];
 
-    public function barrenosPlan()
+    public function drill_plan()
     {
         return $this->hasMany(BarrenosPlan::class, 'equipo_id')
             ->where('fecha', Carbon::now()->toDateString());
     }
 
-    public function barrenosEjecutados()
+    public function drill_executed()
     {
         return $this->hasMany(Barrenos::class, 'equipo', 'name')
             ->whereDate('fecha', Carbon::now()->toDateString());

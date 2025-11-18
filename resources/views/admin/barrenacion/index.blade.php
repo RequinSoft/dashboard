@@ -16,7 +16,7 @@
                     <div class="p-3">
                     <h5 class="fs-0"><a class="text-dark" href="{{ route('barrenacion.tabla', $equipo->id) }}">{{ $equipo->name }}</a></h5>
                     <p class="fs--1 mb-3"><a class="text-500" href="#!">{{ $equipo->contractor ? $equipo->contractor : '' }}</a></p>
-                    <h5 class="fs--1 mb-1">Plan {!! $equipo->barrenosPlan->isNotEmpty() ? "<strong class='text-success'>".$equipo->barrenosPlan->first()->barrenos_plan."</strong>" : "<strong class='text-danger'>Sin Plan el día de hoy</strong>" !!}</h5>
+                    <h5 class="fs--1 mb-1">Plan {!! $equipo->drill_plan->isNotEmpty() ? "<strong class='text-success'>".$equipo->drill_plan->first()->barrenos_plan."</strong>" : "<strong class='text-danger'>Sin Plan el día de hoy</strong>" !!}</h5>
                     
                     </div>
                 </div>

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('port_pi')->nullable();
             $table->string('ip_af');
             $table->string('port_af')->nullable();
+            $table->string('user')->nullable();
+            $table->string('password')->nullable();
             $table->boolean('activo')->default(0);
             $table->timestamps();
         });

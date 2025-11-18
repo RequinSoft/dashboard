@@ -75,7 +75,7 @@
                     @else
                         <div class="col-sm-4">
                             <label class="form-label" for="event-venue">Autenticación</label>
-                            <input hidden class="form-control" id="authen" name="authen" type="text" value="1" readonly />
+                            <input hidden class="form-control" id="authen" name="authen" type="text" value="1" />
                             <input class="form-control" type="text" value="Local" readonly />
                         </div>
                     @endif

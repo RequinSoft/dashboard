@@ -46,6 +46,15 @@
                     <label class="form-label" for="event-venue">Puerto AF</label>
                     <input disabled class="form-control" id="port_af" name="port_af" type="text" value="{{ $data->port_af ? $data->port_af : '' }}" />
                 </div>
+
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="event-venue">Usuario de AF</label>
+                    <input disabled class="form-control" id="user" name="user" type="text" value="{{ $data->user ? $data->user : '' }}" />
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="event-venue">Contraseña de AF</label>
+                    <input disabled class="form-control" id="password" name="password" type="text" value="{{ $data->password ? $data->password : '' }}" />
+                </div>
                           
                 <div class="col-6 mt-2 text-end">
                     <a href="{{ route('admin.index') }}" class="btn btn-danger btn-user btn-block">

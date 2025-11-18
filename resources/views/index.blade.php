@@ -409,7 +409,7 @@
                             <h4 class="fs-3 fw-normal"></h4>
                             <p class="text-end font-sans-serif fw-normal lh-1 mb-1 fs-1 pe-2">
                                 <!-- Valor dinámico de Barrenación -->
-                                 {{ $equipoBarrenacion->barrenosPlan[0]->barrenos_plan }} /
+                                 {{ $equipoBarrenacion->drill_plan ? $equipoBarrenacion->drill_plan->sum('barrenos_plan') : 0 }} /
                                  {{ $equipoBarrenacion->barrenosEjecutados ? $equipoBarrenacion->barrenosEjecutados->sum('barrenos') : 0 }}
                             </p>                            
                         </div>
@@ -418,7 +418,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-md-2 col-xxl-12">
+                <div class="col-md-2 col-xxl-12">   
                     <div class="card h-100">
                     <div class="card-body">
                         <div class="row flex-between-center">

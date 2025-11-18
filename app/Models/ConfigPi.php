@@ -13,6 +13,8 @@ class ConfigPi extends Model
         'port_pi',
         'ip_af',
         'port_af',
+        'user',
+        'password',
         'activo',
     ];
 }
