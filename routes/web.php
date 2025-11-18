@@ -153,4 +153,16 @@ Route::controller(AdminController::class)
 
     Route::post('/barrenacion/configuracion/update', 'barrenacionConfiguracionUpdate')
         ->name('barrenacion.configuracion.update');
+
+    /************************************* */
+    /**************** PI ***************** */
+    /************************************* */
+    Route::get('/pi', 'piIndex')
+        ->name('pi.index');
+    
+    Route::get('/pi/editar/{id}', 'piEditar')
+        ->name('pi.editar');
+
+    Route::post('/pi/update/', 'piUpdate')
+        ->name('pi.update');
 });

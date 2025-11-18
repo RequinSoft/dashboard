@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\BarrenosPlan;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
+use App\Models\ConfigPi;
 use App\Models\Equipo;
 use App\Models\Ldap;
 use App\Models\Molienda;
@@ -800,5 +801,70 @@ class AdminController extends Controller
 
         return redirect()->route('barrenacion.tabla', $request->equipo_id)
             ->with('success', 'El plan de barrenación se ha creado correctamente.');
+    }
+
+    /************************************************* */
+    /************************ PI ********************* */
+    /************************************************* */
+    public function piIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = ConfigPi::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.pi.index', compact('empresa', 'data'));
+    }
+
+    public function piEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        $data = ConfigPi::find($id);
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.pi.editar', compact('empresa', 'data'));
+    }
+
+    public function piUpdate(Request $request){
+
+        $request->validate(
+            [
+                'id' => 'required|exists:config_pi,id',
+                'ip_pi' => 'required',
+                'port_pi' => 'required|numeric',
+                'ip_af' => 'required',
+                'port_af' => 'required|numeric',
+            ],
+            [
+                'id.required' => 'El registro es obligatorio.',
+                'id.exists' => 'El registro no existe.',
+                'ip_pi.required' => 'El campo IP es obligatorio.',
+                'port_pi.required' => 'El campo Puerto es obligatorio.',
+                'port_pi.numeric' => 'El campo Puerto debe ser un número.',
+                'ip_af.required' => 'El campo IP AF es obligatorio.',
+                'port_af.required' => 'El campo Puerto AF es obligatorio.',
+                'port_af.numeric' => 'El campo Puerto AF debe ser un número.',
+            ]
+        );
+        
+        $data = ConfigPi::find($request->id);
+
+        $data->ip_pi = $request->ip_pi;
+        $data->port_pi = $request->port_pi;
+        $data->ip_af = $request->ip_af;
+        $data->port_af = $request->port_af;
+        $data->activo = $request->has('activo') ? 1 : 0;
+
+        $data->save();
+
+        return redirect()->route('pi.index')
+            ->with('success', 'Los datos se han actualizado correctamente.');
     }
 }
