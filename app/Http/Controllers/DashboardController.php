@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
+use App\Models\Barrenos;
+use App\Models\BarrenosPlan;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
+use App\Models\Equipo;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -18,8 +21,13 @@ class DashboardController extends Controller
         }else{
             $empresa = $empresa->nombre_empresa;
         }
+
+        $equiposBarrenacion = Equipo::query()->where('tipo', 'Perforadora')
+            ->where('activo', 1)
+            ->get();
+
         
-        return view('index', compact('empresa'));
+        return view('index', compact('empresa', 'equiposBarrenacion'));
     }
 
     public function loginIndex(){

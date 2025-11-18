@@ -378,7 +378,7 @@
 
     <!-- Barrenación x Hora -->
     <div class="row g-3">
-        <div class="col-xxl-9">
+        <div class="col-xxl-7">
             <div class="card h-150">
     
                 <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
@@ -397,52 +397,28 @@
         </div>
         <div class="col">
             <div class="row g-3">
-                <div class="col-md-4 col-xxl-12">
+                @foreach($equiposBarrenacion as $equipoBarrenacion)
+                <div class="col-md-2 col-xxl-6">
                     <div class="card h-100">
                     <div class="card-body">
                         <div class="row flex-between-center">
                         <div class="col d-md-flex d-lg-block flex-between-center">
-                            <h6 class="mb-md-0 mb-lg-2">JU-0001</h6>
+                            <h6 class="mb-md-0 mb-lg-2">{{ $equipoBarrenacion->name }}</h6>
                         </div>
                         <div class="col-auto">
                             <h4 class="fs-3 fw-normal"></h4>
-                            <p class="text-end font-sans-serif fw-normal lh-1 mb-1 fs-1 pe-2"></p>                            
+                            <p class="text-end font-sans-serif fw-normal lh-1 mb-1 fs-1 pe-2">
+                                <!-- Valor dinámico de Barrenación -->
+                                 {{ $equipoBarrenacion->barrenosPlan[0]->barrenos_plan }} /
+                                 {{ $equipoBarrenacion->barrenosEjecutados ? $equipoBarrenacion->barrenosEjecutados->sum('barrenos') : 0 }}
+                            </p>                            
                         </div>
                         </div>
                     </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-xxl-12">
-                    <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row flex-between-center">
-                        <div class="col d-md-flex d-lg-block flex-between-center">
-                            <h6 class="mb-md-0 mb-lg-2">JU-0002</h6>
-                        </div>
-                        <div class="col-auto">
-                            <h4 class="fs-3 fw-normal"></h4>
-                            <p class="text-end font-sans-serif fw-normal lh-1 mb-1 fs-1 pe-2"></p>  
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xxl-12">
-                    <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row flex-between-center">
-                        <div class="col d-md-flex d-lg-block flex-between-center">
-                            <h6 class="mb-md-0 mb-lg-2">JU-0003</h6>
-                        </div>
-                        <div class="col-auto">
-                            <h4 class="fs-3 fw-normal"></h4>
-                            <p class="text-end font-sans-serif fw-normal lh-1 mb-1 fs-1 pe-2"></p>  
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xxl-12">
+                @endforeach
+                <div class="col-md-2 col-xxl-12">
                     <div class="card h-100">
                     <div class="card-body">
                         <div class="row flex-between-center">

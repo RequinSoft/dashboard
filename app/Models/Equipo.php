@@ -21,4 +21,10 @@ class Equipo extends Model
         return $this->hasMany(BarrenosPlan::class, 'equipo_id')
             ->where('fecha', Carbon::now()->toDateString());
     }
+
+    public function barrenosEjecutados()
+    {
+        return $this->hasMany(Barrenos::class, 'equipo', 'name')
+            ->whereDate('fecha', Carbon::now()->toDateString());
+    }
 }
