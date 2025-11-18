@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('contractor')->nullable();
             $table->string('image')->nullable();
             $table->string('tipo')->nullable();
             $table->boolean('activo')->default(true);

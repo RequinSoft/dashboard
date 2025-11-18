@@ -1,14 +1,14 @@
 @extends('layouts.template_admin')
 
-@section('title', 'Equipos - Crear')
+@section('title', 'Añadir - Plan')
 
 @section('content')
 <div class="card mb-3">
     <div class="card-header">
-      <h5 class="mb-0">Añadir Equipo</h5>
+      <h5 class="mb-0">{{ $equipo->name }}</h5>
     </div>
     <div class="card-body bg-light">
-        <form  action="{{ route('equipos.store') }}" method="POST" enctype="multipart/form-data">
+        <form  action="{{ route('barrenacion.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="row gx-2">             
                 <div class="col-sm-12 mb-3">
@@ -35,30 +35,30 @@
                     @endif
                 </div> 
 
-                <div class="col-sm-9 row">
-                    <div class="col-sm-4">
+                <div class="col-sm-12 row">
+                    <div class="col-sm-3">
                         <label class="form-label" for="event-venue">Equipo</label>
-                        <input class="form-control" id="name" name="name" type="text" value="{{ old('name') }}" />
+                        <input class="form-control" id="equipo_id" name="equipo_id" type="text" value="{{ $equipo->id }}" hidden/>
+                        <input class="form-control" id="name" name="name" type="text" value="{{ $equipo->name }}" disabled/>
                     </div>
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Tipo</label>
-                        <select class="form-select" id="tipo" name="tipo">
-                            <option value="">Seleccione un tipo</option>
-                            <option value="Perforadora" {{ old('tipo') == 'Perforadora' ? 'selected' : '' }}>Perforadora</option>
-                            <option value="Pala" {{ old('tipo') == 'Pala' ? 'selected' : '' }}>Pala</option>
-                            <option value="Camion" {{ old('tipo') == 'Camión' ? 'selected' : '' }}>Camión</option>
-                        </select>
+                    <div class="col-sm-3">
+                        <label class="form-label" for="event-venue">Plan de Barrenos</label>
+                        <input type="number" class="form-control" id="barrenos_plan" name="barrenos_plan" value="{{ old('barrenos_plan') }}"/>
                     </div>
 
-                    <div class="col-sm-4">
-                        <label class="form-label" for="event-venue">Estado</label>
-                        <input class="form-control" id="activo" name="activo" type="text" value="Activo" readonly />
+                    <div class="col-sm-3">
+                        <label class="form-label" for="event-venue">Fecha Inicial</label>
+                        <input class="form-control" id="fecha_inicio" name="fecha_inicio" type="date" value="{{ old('fecha_inicio') }}" required/>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="form-label" for="event-venue">Fecha Final</label>
+                        <input class="form-control" id="fecha_final" name="fecha_final" type="date" value="{{ old('fecha_final') }}" required/>
                     </div>
 
                 </div>
                 <div class="col-6 mt-3 text-end">
-                    <a href="{{ route('equipos.index') }}" class="btn btn-danger btn-user btn-block">
-                        Regresar
+                    <a href="{{ route('barrenacion.index') }}" class="btn btn-danger btn-user btn-block">
+                        Cancelar
                     </a>
                 </div> 
                 <div class="col-6 mt-3">

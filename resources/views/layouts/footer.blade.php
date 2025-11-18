@@ -22,7 +22,6 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    @yield('script')
     <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
     <script src="{{ asset('vendors/prism/prism.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
@@ -52,6 +51,7 @@
     <script src="{{ asset('assets/data/world.js') }}"></script>
     <script src="{{ asset('vendors/dayjs/dayjs.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    @yield('script')
 
     <!-- ===============================================-->
     <!--    JavaScripts-->

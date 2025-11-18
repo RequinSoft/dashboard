@@ -123,4 +123,34 @@ Route::controller(AdminController::class)
 
     Route::post('/molienda/configuracion/update', 'moliendaConfiguracionUpdate')
         ->name('molienda.configuracion.update');
+
+    /************************************* */
+    /************ Barrenación ************ */
+    /************************************* */
+    Route::get('/barrenacion', 'barrenacionIndex')
+        ->name('barrenacion.index');
+
+    Route::get('/barrenacion/tabla/{id}', 'barrenacionTabla')
+        ->name('barrenacion.tabla');
+
+    Route::get('/barrenacion/nuevo/{id}', 'barrenacionNuevo')
+        ->name('barrenacion.nuevo');
+
+    Route::post('/barrenacion/store', 'barrenacionStore')
+        ->name('barrenacion.store');
+
+    Route::get('/barrenacion/editar/{id}', 'barrenacionEditar')
+        ->name('barrenacion.editar');
+
+    Route::post('/barrenacion/update', 'barrenacionUpdate')
+        ->name('barrenacion.update');
+
+    Route::get('/barrenacion/configuracion', 'barrenacionConfiguracion')
+        ->name('barrenacion.configuracion');
+
+    Route::get('/barrenacion/configuracion/editar', 'barrenacionConfiguracionEditar')
+        ->name('barrenacion.configuracion.editar');
+
+    Route::post('/barrenacion/configuracion/update', 'barrenacionConfiguracionUpdate')
+        ->name('barrenacion.configuracion.update');
 });

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
+use App\Models\BarrenosPlan;
 use App\Models\ConfigEmpresa;
 use App\Models\ConfigKw;
-use App\Models\Ldap;
 use App\Models\Equipo;
+use App\Models\Ldap;
 use App\Models\Molienda;
 use App\Models\MoliendaConfiguracion;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -614,7 +615,7 @@ class AdminController extends Controller
         
         $request->validate(
             [
-                'id' => 'required|exists:moliendas,id',
+                'id' => 'required|exists:molienda_turno,id',
                 'fecha' => 'required|date',
                 'plan' => 'required|numeric',
             ],
@@ -632,8 +633,7 @@ class AdminController extends Controller
         $molienda = Molienda::find($request->id);
 
         $molienda->fecha = $request->fecha;
-        $molienda->toneladas = $request->toneladas;
-        $molienda->humedad = $request->humedad;
+        $molienda->plan = $request->plan;
 
         $molienda->save();
 
@@ -698,5 +698,107 @@ class AdminController extends Controller
 
         return redirect()->route('molienda.configuracion')
             ->with('success', 'La configuración de molienda se ha actualizado correctamente.');
+    }
+
+    /************************************************* */
+    /******************* Barrenación ***************** */
+    /************************************************* */
+    public function barrenacionIndex(){
+        
+        $equipos = Equipo::where('activo', 1)->where('tipo', 'Perforadora')->get();
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.barrenacion.index', compact('empresa', 'equipos'));
+    }
+
+    public function barrenacionTabla($id){
+        
+        $anio = date('Y');
+        $empresa = ConfigEmpresa::first();
+        $equipo = Equipo::find($id);
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+        
+        $enero = BarrenosPlan::whereMonth('fecha', 1)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $febrero = BarrenosPlan::whereMonth('fecha', 2)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $marzo = BarrenosPlan::whereMonth('fecha', 3)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $abril = BarrenosPlan::whereMonth('fecha', 4)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $mayo = BarrenosPlan::whereMonth('fecha', 5)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $junio = BarrenosPlan::whereMonth('fecha', 6)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $julio = BarrenosPlan::whereMonth('fecha', 7)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $agosto = BarrenosPlan::whereMonth('fecha', 8)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $septiembre = BarrenosPlan::whereMonth('fecha', 9)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $octubre = BarrenosPlan::whereMonth('fecha', 10)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $noviembre = BarrenosPlan::whereMonth('fecha', 11)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+        $diciembre = BarrenosPlan::whereMonth('fecha', 12)->whereYear('fecha', $anio)->where('equipo_id', $id)->orderBy('fecha')->get();
+
+        return view('admin.barrenacion.tablaIndex', compact('empresa', 'equipo', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'));
+    }
+
+    public function barrenacionNuevo($id){
+        
+        $empresa = ConfigEmpresa::first();
+        $equipo = Equipo::find($id);
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.barrenacion.crear', compact('empresa', 'equipo'));
+    }
+
+    public function barrenacionStore(Request $request){
+        
+        $request->validate(
+            [
+                'equipo_id' => 'required|exists:equipos,id',
+                'barrenos_plan' => 'required|numeric',
+                'fecha_inicio' => 'required|date',
+                'fecha_final' => 'required|date|after_or_equal:fecha_inicio',
+            ],
+            [
+                'equipo_id.required' => 'El campo Equipo es obligatorio.',
+                'equipo_id.exists' => 'El Equipo no existe.',
+                'barrenos_plan.required' => 'El campo Plan de Barrenos es obligatorio.',
+                'barrenos_plan.numeric' => 'El campo Plan de Barrenos debe ser un número.',
+                'fecha_inicio.required' => 'El campo Fecha Inicial es obligatorio.',
+                'fecha_inicio.date' => 'El campo Fecha Inicial debe ser una fecha válida.',
+                'fecha_final.required' => 'El campo Fecha Final es obligatorio.',
+                'fecha_final.date' => 'El campo Fecha Final debe ser una fecha válida.',
+                'fecha_final.after_or_equal' => 'El campo Fecha Final debe ser una fecha posterior o igual a la Fecha Inicial.',
+            ]
+        );
+        //return $request->all();
+
+        $start = strtotime($request->fecha_inicio);
+        $end = strtotime($request->fecha_final);
+
+        for ($i = $start; $i <= $end; $i += 86400) {
+            $date = date('Y-m-d', $i);
+
+            BarrenosPlan::updateOrCreate(
+                [
+                    'equipo_id' => $request->equipo_id,
+                    'fecha' => $date,
+                ],
+                [
+                    'barrenos_plan' => $request->barrenos_plan,
+                    'fecha' => $date,
+                    'activo' => 1,
+                ]
+        );
+        }
+
+        return redirect()->route('barrenacion.tabla', $request->equipo_id)
+            ->with('success', 'El plan de barrenación se ha creado correctamente.');
     }
 }

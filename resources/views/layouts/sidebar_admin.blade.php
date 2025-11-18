@@ -47,7 +47,7 @@
             <!-- parent pages--><a class="nav-link" href="{{ route('equipos.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
-                  <span class="fas fa-address-book">
+                  <span class="fas fa-truck-loading">
                   </span>
                 </span>
                 <span class="nav-link-text ps-1">Equipos</span>
@@ -63,20 +63,22 @@
                 <span class="nav-link-text ps-1">LDAP</span>
               </div>
             </a>
+
+            <!-- Plan de Molienda -->            
             <li class="nav-item">
-              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="dashboard">
+              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#molienda" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="molienda">
                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Molienda</span>
                 </div>
               </a>
-              <ul class="nav collapse show" id="dashboard">
-                <li class="nav-item"><a class="nav-link active" href="{{ route('molienda.index') }}" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos de Molienda</span>
+              <ul class="nav collapse show" id="molienda">
+                <li class="nav-item"><a class="nav-link" href="{{ route('molienda.index') }}" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos Molienda</span>
                     </div>
                   </a>
                   <!-- more inner pages-->
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('molienda.configuracion') }}" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Configuración de Molienda</span>
+                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Configuración Molienda</span>
                     </div>
                   </a>
                   <!-- more inner pages-->
@@ -84,15 +86,22 @@
               </ul>
             </li>
 
-            <!-- parent pages--><a class="nav-link" href="" role="button" data-bs-toggle="" aria-expanded="false">
-              <div class="d-flex align-items-center">
-                <span class="nav-link-icon">
-                  <span class="fas fa-circle">
-                  </span>
-                </span>
-                  <span class="nav-link-text ps-1">Plan de Barrenacion</span>
-              </div>
-            </a>
+            <!-- Plan de Barrenación -->            
+            <li class="nav-item">
+              <!-- parent pages--><a class="nav-link dropdown-indicator" href="#dashboard" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="dashboard">
+                <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-braille"></span></span><span class="nav-link-text ps-1">Barrenación</span>
+                </div>
+              </a>
+              <ul class="nav collapse show" id="dashboard">
+                <li class="nav-item"><a class="nav-link" href="{{ route('barrenacion.index') }}" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Datos Barrenación</span>
+                    </div>
+                  </a>
+                  <!-- more inner pages-->
+                </li>
+              </ul>
+            </li>
+
 
             <a class="nav-link" href="{{ route('energia.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">

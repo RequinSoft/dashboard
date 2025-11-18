@@ -1,0 +1,43 @@
+<!-- Jumbo de avance (SVG inline) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img"
+     aria-labelledby="jumboTitle jumboDesc" style="width:100%;height:auto;max-height:160px;">
+  <title id="jumboTitle">Jumbo de avance</title>
+  <desc id="jumboDesc">Icono estilizado de un jumbo de avance minero con brazo frontal y cabina.</desc>
+
+  <!-- Suelo -->
+  <rect x="0" y="120" width="260" height="30" fill="#6b4f2b" opacity="0.9"/>
+
+  <!-- Chasis principal -->
+  <rect x="20" y="95" width="170" height="22" rx="4" fill="#374151"/>
+  <rect x="25" y="90" width="160" height="10" rx="3" fill="#4b5563"/>
+
+  <!-- Cabina -->
+  <rect x="35" y="60" width="45" height="30" rx="4" fill="#1f2937"/>
+  <rect x="40" y="65" width="35" height="20" rx="2" fill="#93c5fd" opacity="0.8"/>
+
+  <!-- Ruedas -->
+  <circle cx="55" cy="120" r="14" fill="#111827"/>
+  <circle cx="55" cy="120" r="7" fill="#9ca3af"/>
+  <circle cx="150" cy="120" r="14" fill="#111827"/>
+  <circle cx="150" cy="120" r="7" fill="#9ca3af"/>
+
+  <!-- Brazo principal -->
+  <rect x="115" y="70" width="95" height="10" rx="3" transform="rotate(-2 115 75)" fill="#1f2937"/>
+  <rect x="118" y="73" width="90" height="6" rx="3" transform="rotate(-2 118 76)" fill="#4b5563"/>
+
+  <!-- Boom secundario (intermedio) -->
+  <rect x="180" y="60" width="55" height="8" rx="3" transform="rotate(-10 180 64)" fill="#1f2937"/>
+  <rect x="182" y="62" width="50" height="5" rx="2" transform="rotate(-10 182 65)" fill="#374151"/>
+
+  <!-- Martillo / perforadora frontal -->
+  <g transform="translate(228,50) rotate(-10)">
+    <rect x="-6" y="0" width="12" height="28" rx="2" fill="#0f172a"/>
+    <path d="M-4 28 L0 36 L4 28 Z" fill="#9ca3af"/>
+  </g>
+
+  <!-- Líneas hidráulicas -->
+  <path d="M140 75 C155 68, 175 65, 200 58" stroke="#111827" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Detalles del chasis -->
+  <rect x="90" y="102" width="20" height="6" rx="2" fill="#f59e0b"/>
+</svg>

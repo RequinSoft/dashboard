@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('barrenos_plan', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('equipo');
+            $table->unsignedBigInteger('equipo_id');
+            $table->foreign('equipo_id')->references('id')->on('equipos');
             $table->float('barrenos_plan');
             $table->timestamps();
         });

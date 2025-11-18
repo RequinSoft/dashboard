@@ -1,0 +1,45 @@
+<!-- Perforadora minera (SVG inline) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="drillTitle drillDesc" style="width:100%;height:auto;max-height:160px;">
+  <title id="drillTitle">Perforadora minera</title>
+  <desc id="drillDesc">Icono estilizado de perforadora con torre, brazo y broca.</desc>
+
+  <!-- Fondo transparente opcional -->
+  <rect x="0" y="0" width="240" height="240" fill="none"/>
+
+  <!-- Suelo / roca -->
+  <path d="M0 200 C40 170, 80 190, 120 180 C160 170, 200 190, 240 180 L240 240 L0 240 Z"
+        fill="#6b4f2b" opacity="0.9"/>
+
+  <!-- Base de la estación -->
+  <rect x="40" y="145" width="160" height="18" rx="3" fill="#374151"/>
+  <rect x="60" y="135" width="120" height="12" rx="3" fill="#4b5563"/>
+
+  <!-- Plataforma giratoria -->
+  <circle cx="120" cy="120" r="10" fill="#111827" opacity="0.9"/>
+
+  <!-- Torre de la perforadora -->
+  <path d="M110 118 L130 118 L150 40 L90 40 Z" fill="#111827"/>
+  <path d="M114 118 L126 118 L144 48 L96 48 Z" fill="#374151" opacity="0.9"/>
+
+  <!-- Brazo articulado -->
+  <rect x="144" y="64" width="60" height="8" rx="3" transform="rotate(12 144 68)" fill="#1f2937"/>
+  <rect x="146" y="68" width="56" height="6" rx="3" transform="rotate(12 146 71)" fill="#374151" opacity="0.95"/>
+
+  <!-- Broca (bit) -->
+  <g transform="translate(206,88) rotate(12)">
+    <rect x="-8" y="-6" width="16" height="30" rx="3" fill="#0f172a"/>
+    <path d="M-6 18 L0 28 L6 18 Z" fill="#0b1220"/>
+    <!-- puntas de la broca -->
+    <path d="M-3 20 L0 24 L3 20 L0 30 Z" fill="#9ca3af" opacity="0.95"/>
+  </g>
+
+  <!-- Cable que une brazo a broca -->
+  <path d="M150 66 C168 70, 188 78, 204 86" stroke="#0b1220" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Detalles y refuerzos en la torre -->
+  <line x1="100" y1="60" x2="140" y2="60" stroke="#111827" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="100" y1="80" x2="140" y2="80" stroke="#111827" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Pequeño indicador / logo en la torre -->
+  <rect x="112" y="72" width="16" height="8" rx="2" fill="#f59e0b"/>
+</svg>

@@ -22,6 +22,14 @@
                   </ul>
                 </div>
                 <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                </div>
+                <div class="card-body">
                   <div class="row g-1">
                     <div class="col-xxl-12">
                       <div class="tab-content">
@@ -402,3 +410,11 @@
                 </div>
               </div>
 @endsection
+<script>
+    setTimeout(function() {
+        var alert = document.getElementById('success-alert');
+        if (alert) {
+            alert.style.display = 'none';
+        }
+    }, 3000); // Ocultar después de 3 segundos (3000 milisegundos)
+</script>
