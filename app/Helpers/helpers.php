@@ -145,14 +145,7 @@ if(!function_exists('getWebId')){
 
             return $error;
         }else{
-            print("Se creó el tag $tag\n");
-
-            $tag = Tags::query('tag', $tag)
-                ->update([
-                    'webid' => $json['WebId'],
-                ]);
-            
-            print("WebId obtenido exitosamente \n");
+            return $json;            
         }
     }
 }
