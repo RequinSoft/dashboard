@@ -56,7 +56,7 @@ if(!function_exists('getDemanda')) {
             $xmlString = file_get_contents($url);
             $xml = new SimpleXMLElement($xmlString);
             $xml_arreglo = $xml->Page->Item;
-            //print_r($xml_arreglo);            
+            print_r($xml_arreglo);            
     
             foreach($xml_arreglo as $arreglo){
                 $imp = 'h --> '.$arreglo['h'].', l --> '.$arreglo['l'].', v --> '.$arreglo['v'].'<br>';    
