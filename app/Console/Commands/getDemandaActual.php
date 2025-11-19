@@ -36,6 +36,7 @@ class getDemandaActual extends Command
 
         // Validar si la configuración de KW está activa
         $configKw = ConfigKw::first();
+
         if($configKw){
             if($configKw->status == 1){
                 
@@ -70,7 +71,7 @@ class getDemandaActual extends Command
                     /********************************************************** */
                     $getAlarma = DemandaAlarma::query()
                         ->where('activa', 1)
-                        ->count();
+                        ->get();
                     $countAlarma = $getAlarma->count();
                     print("Alarma -> {$getAlarma} y son {$countAlarma}\n");
 
