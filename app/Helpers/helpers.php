@@ -59,7 +59,7 @@ if(!function_exists('getDemanda')) {
             $xmlString = file_get_contents($url);
             $xml = new SimpleXMLElement($xmlString);
             $xml_arreglo = $xml->Page->Item;
-            print_r($xml_arreglo);            
+            //print_r($xml_arreglo);            
     
             foreach($xml_arreglo as $arreglo){
                 $imp = 'h --> '.$arreglo['h'].', l --> '.$arreglo['l'].', v --> '.$arreglo['v'].'<br>';    
@@ -70,7 +70,7 @@ if(!function_exists('getDemanda')) {
                     $pf = $pf*-1;
                     print("El factor de Potencia viene del XML $pf\n");
                 }else{
-                    print("El factor de Potencia NO viene del XML $pf\n");
+                    //print("El factor de Potencia NO viene del XML $pf\n");
                 }
 
                 //Obtener los KW Totales
@@ -78,7 +78,7 @@ if(!function_exists('getDemanda')) {
                     $demanda = (int)$arreglo['v']; 
                     print("Los Kw's vienen del XML $demanda\n");
                 }else{
-                    print("Los Kw's NO vienen del XML $demanda\n");
+                    //print("Los Kw's NO vienen del XML $demanda\n");
                 }
                           
             }
