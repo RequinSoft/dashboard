@@ -137,7 +137,7 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        $roles = Role::all();
+        $roles = Role::query()->where('name', '<>', 'sa')->get();
         
         return view('admin.users.crear', compact('empresa', 'roles', 'ldap'));
     }
