@@ -76,15 +76,15 @@ if(!function_exists('getDemanda')) {
                 if($arreglo['h'] == '22543'){
     
                     $demanda = (int)$arreglo['v']; 
-                          
-                    $data = [
-                        'ip' => $ip,
-                        'pf' => $pf,
-                        'demanda' => $demanda,
-                    ];
-    
-                    return $data;
                 }
+                          
+                $data = [
+                    'ip' => $ip,
+                    'pf' => $pf,
+                    'demanda' => $demanda,
+                ];
+
+                return $data;
             }
         }else{
             $data = [
