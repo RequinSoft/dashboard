@@ -67,6 +67,7 @@ if(!function_exists('getDemanda')) {
                 //Obtener el factor de Potencia
                 if($arreglo['h'] == '22555'){
                     $pf = (double)$arreglo['v'];
+                    $pf = $pf*-1;
                     print("El factor de Potencia viene del XML $pf\n");
                 }else{
                     print("El factor de Potencia NO viene del XML $pf\n");
@@ -87,7 +88,7 @@ if(!function_exists('getDemanda')) {
                 'demanda' => $demanda,
             ];
             return $data;
-            
+
         }else{
             $data = [
                 'ip' => $ip,
