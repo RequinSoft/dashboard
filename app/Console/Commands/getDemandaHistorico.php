@@ -54,10 +54,7 @@ class getDemandaHistorico extends Command
                     $factorPotencia = $getDemanda['pf'];
 
                     // Guardar en la base de datos la demanda actual
-                    Demanda::updateOrCreate(
-                        [
-                            'id' => 1
-                        ],
+                    Demanda::create(
                         [
                             'kw' => $demandaActual,
                             'factor_potencia' => $factorPotencia,
