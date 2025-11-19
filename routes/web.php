@@ -29,7 +29,6 @@ Route::controller(DashboardController::class)->group(function(){
 });
 
 Route::controller(AdminController::class)
-    //->middleware('session.expired')
     ->group(function(){
 
     /************************************ */

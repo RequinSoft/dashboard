@@ -95,40 +95,40 @@ if(!function_exists('getDemanda')) {
 if(!function_exists('getWebId')){
     function getWebId($tag, $ip_pi, $ip_af, $user, $password){
             
-            $pi_user = 'duxcontrol';
-            $pi_password = 'Jp02k23dux';
-            //$ip = '10.74.101.43';
-            //$ip_pi = '10.74.16.35';
-            
-            $servidor_pi = 'https://'.$ip_af.'/piwebapi/points?path=\\\\'.$ip_pi.'\\'.$tag;        
+        $pi_user = 'duxcontrol';
+        $pi_password = 'Jp02k23dux';
+        //$ip = '10.74.101.43';
+        //$ip_pi = '10.74.16.35';
+        
+        $servidor_pi = 'https://'.$ip_af.'/piwebapi/points?path=\\\\'.$ip_pi.'\\'.$tag;        
 
-            $url = $servidor_pi;  
+        $url = $servidor_pi;  
 
-            $ch = curl_init($ip_af);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        $ch = curl_init($ip_af);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $datos = curl_exec($ch);
+        $conexion = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);   
+        //return $conexion;     
+
+        if($conexion == '200'){
+            //Funcion global para la consulta al pi de todos los metodos
+            $ch = curl_init();
+        
+            curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $datos = curl_exec($ch);
-            $conexion = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);   
-            //return $conexion;     
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
+            curl_setopt($ch, CURLOPT_USERNAME, $pi_user);
+            curl_setopt($ch, CURLOPT_PASSWORD, $pi_password);
 
-            if($conexion == '200'){
-                //Funcion global para la consulta al pi de todos los metodos
-                $ch = curl_init();
-            
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
-                curl_setopt($ch, CURLOPT_USERNAME, $pi_user);
-                curl_setopt($ch, CURLOPT_PASSWORD, $pi_password);
-    
-                $response = curl_exec($ch);
-                curl_close($ch);
-                $json = json_decode($response, true);
-            }
-            //return $json;
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $json = json_decode($response, true);
+        }
+        //return $json;
 
 
         if(isset($json['Errors'])){            
@@ -136,18 +136,14 @@ if(!function_exists('getWebId')){
 
             return $error;
         }else{
-            print('Se creó el tag '.$request->tag);
+            print("Se creó el tag $tag\n");
 
-            $tag = WebIds::create([
-                'tag' => $request->tag,
-                'tag_id' => $getwebid['Id'],
-                'webid' => $getwebid['WebId'],
-                'path' => $getwebid['Path'],
-                'descriptor' => $getwebid['Descriptor'],
-                'units' => $getwebid['EngineeringUnits'],
-            ]);
+            $tag = Tags::query('tag', $tag)
+                ->update([
+                    'webid' => $json['WebId'],
+                ]);
             
-            return redirect()->route('webids')->with('msg_pass', $msg_addTag);
+            print("WebId obtenido exitosamente \n");
         }
     }
 }
