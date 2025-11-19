@@ -41,6 +41,9 @@ if(!function_exists('getDemanda')) {
      * @return string The KW data.
      */
     function getDemanda($ip, $port) {
+        $pf = 0;
+        $demanda = 0;
+        
         // Realizar la solicitud al dispositivo externo
         $ch = curl_init($ip);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
