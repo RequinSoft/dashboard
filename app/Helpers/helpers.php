@@ -43,7 +43,7 @@ if(!function_exists('getDemanda')) {
     function getDemanda($ip, $port) {
         $pf = 0;
         $demanda = 0;
-        
+
         // Realizar la solicitud al dispositivo externo
         $ch = curl_init($ip);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -67,6 +67,9 @@ if(!function_exists('getDemanda')) {
                 //Obtener el factor de Potencia
                 if($arreglo['h'] == '22555'){
                     $pf = (double)$arreglo['v'];
+                    print("El factor de Potencia viene del XML $pf\n");
+                }else{
+                    print("El factor de Potencia NO viene del XML $pf\n");
                 }
 
                 //Obtener los KW Totales
