@@ -73,19 +73,21 @@ if(!function_exists('getDemanda')) {
                 }
 
                 //Obtener los KW Totales
-                if($arreglo['h'] == '22543'){
-    
+                if($arreglo['h'] == '22543'){    
                     $demanda = (int)$arreglo['v']; 
+                    print("Los Kw's vienen del XML $demanda\n");
+                }else{
+                    print("Los Kw's NO vienen del XML $demanda\n");
                 }
                           
-                $data = [
-                    'ip' => $ip,
-                    'pf' => $pf,
-                    'demanda' => $demanda,
-                ];
-
-                return $data;
             }
+            $data = [
+                'ip' => $ip,
+                'pf' => $pf,
+                'demanda' => $demanda,
+            ];
+            return $data;
+            
         }else{
             $data = [
                 'ip' => $ip,
