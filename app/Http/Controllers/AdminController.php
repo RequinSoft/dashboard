@@ -909,6 +909,8 @@ class AdminController extends Controller
         $data->port_pi = $request->port_pi;
         $data->ip_af = $request->ip_af;
         $data->port_af = $request->port_af;
+        $data->user = $request->user;
+        $data->password = $request->password;
         $data->activo = $request->has('activo') ? 1 : 0;
 
         $data->save();
