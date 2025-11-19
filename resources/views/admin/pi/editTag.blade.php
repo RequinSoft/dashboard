@@ -35,6 +35,7 @@
                 <div class="col-sm-3 mb-3">
                     <label class="form-label" for="event-venue">Nombre</label>
                     <input disabled class="form-control" id="name" name="name" type="text" value="{{ $data->name ? $data->name : '' }}" />
+                    <input hidden class="form-control" id="id" name="id" type="text" value="{{ $data->id ? $data->id : '' }}" />
                 </div>
 
                 <div class="col-sm-3 mb-3">

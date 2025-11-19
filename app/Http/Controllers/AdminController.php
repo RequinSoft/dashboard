@@ -950,12 +950,12 @@ class AdminController extends Controller
         $request->validate(
             [
                 'id' => 'required|exists:tags,id',
-                'tag_name' => 'required',
+                'tag' => 'required',
             ],
             [
                 'id.required' => 'El registro es obligatorio.',
                 'id.exists' => 'El registro no existe.',
-                'tag_name.required' => 'El campo Nombre del Tag es obligatorio.',
+                'tag.required' => 'El campo Nombre del Tag es obligatorio.',
             ]
         );
         
