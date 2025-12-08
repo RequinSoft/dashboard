@@ -280,9 +280,6 @@
 
                             <div class="col-md-6 col-xxl-12">
                                 <div class="border-xxl-bottom border-xxl-200 mb-2">
-                                    <h3 id="obtenerRitmo" class="text-primary">
-                                        tons/hr
-                                    </h3>
 
                                     <!-- Dona dentro de la gráfica -->
                                     <div id="container_moliendaMensual" class="echart-most-leads my-2" data-echart-responsive="true">
@@ -324,7 +321,7 @@
                     </div>
 
                     <!-- Pie Molienda -->
-                    <div class="col-xxl-5">
+                    <div class="col-xxl-6">
                         <div class="tab-content">
 
                             <div  id="container_molienda" aria-labelledby="crm-revenue-tab">
@@ -332,39 +329,12 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-4">
-                        <div class="card-header d-flex flex-between-center ps-0 py-0 border-bottom">
-                            <ul class="nav nav-tabs border-0 flex-nowrap tab-active-caret" id="crm-revenue-chart-tab" role="tablist" data-tab-has-echarts="data-tab-has-echarts">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link py-3 mb-0 active" id="crm-revenue-tab" data-bs-toggle="tab" href="#crm-revenue" role="tab" aria-controls="crm-revenue" aria-selected="true">
-                                        Molino SAG 
-                                        <div class="text-center">
-                                            <div class="flex flex-col items-center justify-center">
-                                                <svg id="molinoSAG" width="200" height="200" viewBox="0 0 200 200">
-                                                    <!-- Cuerpo del molino -->
-                                                    <circle cx="100" cy="100" r="60" fill="#9ca3af" stroke="#4b5563" stroke-width="4"/>
-
-                                                    <!-- Interior del molino (representa bolas) -->
-                                                    <circle cx="100" cy="100" r="45" fill="#d1d5db"/>
-                                                    
-                                                    <!-- Ejes y base -->
-                                                    <rect x="40" y="160" width="120" height="10" fill="#6b7280"/>
-                                                    <rect x="60" y="170" width="80" height="8" fill="#9ca3af"/>
-
-                                                    <!-- Motor lateral -->
-                                                    <rect x="150" y="85" width="25" height="30" fill="#4b5563"/>
-                                                    <circle cx="180" cy="100" r="10" fill="#6b7280"/>
-
-                                                    <!-- Ejes centrales -->
-                                                    <circle cx="100" cy="100" r="6" fill="#1f2937"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="col-xxl-3 text-center">
+                        <img src="{{ asset('assets/img/') }}"  height="350" width="350" >
                         
+                        <h3 id="obtenerRitmo" class="text-primary">
+                            {{ $getData }} tons/hr
+                        </h3>                
                     </div>
 
 
