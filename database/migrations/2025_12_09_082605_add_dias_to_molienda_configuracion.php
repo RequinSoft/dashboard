@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('molienda_turno', function (Blueprint $table) {
-            $table->id();
-            $table->date('fecha');
-            $table->float('plan');
-            $table->float('primer_turno')->default(0);
-            $table->float('segundo_turno')->default(0);
-            $table->timestamps();
+        Schema::table('molienda_configuracion', function (Blueprint $table) {
+            $table->integer('dias')->default(7)->after('plan');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('molienda_turno');
+        Schema::table('molienda_configuracion', function (Blueprint $table) {
+            //
+        });
     }
 };

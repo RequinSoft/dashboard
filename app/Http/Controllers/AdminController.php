@@ -676,10 +676,13 @@ class AdminController extends Controller
         $request->validate(
             [
                 'plan' => 'required|numeric',
+                'dias' => 'required|numeric',
             ],
             [
                 'plan.required' => 'El campo Plan es obligatorio.',
                 'plan.numeric' => 'El campo Plan debe ser un número.',
+                'dias.required' => 'El campo Días es obligatorio.',
+                'dias.numeric' => 'El campo Días debe ser un número.',
             ]
         );
 
@@ -690,6 +693,8 @@ class AdminController extends Controller
         }
 
         $data->plan = $request->plan;
+        $data->dias = $request->dias;
+        
         if($request->has('activo')){
             $data->activo = 1;
         }else{

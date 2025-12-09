@@ -320,14 +320,7 @@
                         </div>
                     </div>
 
-                    <!-- Pie Molienda -->
-                    <div class="col-xxl-6">
-                        <div class="tab-content">
-
-                            <div  id="container_molienda" aria-labelledby="crm-revenue-tab">
-                            </div>
-                        </div>
-                    </div>
+                    @livewire('molienda-chart')
 
                     @livewire('tons-hr')    
 

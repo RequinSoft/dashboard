@@ -23,11 +23,11 @@ Highcharts.chart('container_molienda', {
     series: [{
         type: 'column',
         name: 'Planeadas',
-        data: planSieteDiasAtras,
+        data: planMolienda,
     }, {
         type: 'spline',
         name: 'Reales',
-        data: realSieteDiasAtras,
+        data: realMolienda,
         marker: {
             lineWidth: 2,
             lineColor: Highcharts.getOptions().colors[3],

@@ -32,9 +32,13 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 mb-3">
+                <div class="col-sm-4 mb-3">
                     <label class="form-label" for="event-venue">Plan Diario</label>
                     <input class="form-control" id="plan" name="plan" type="text" value="{{ $data->plan ? $data->plan : '' }}" />
+                </div>
+                <div class="col-sm-2 mb-3">
+                    <label class="form-label" for="event-venue">Días</label>
+                    <input class="form-control" id="dias" name="dias" type="text" value="{{ $data->dias ? $data->dias : '' }}" />
                 </div>
                 <div class="col-sm-6 mb-3">
 

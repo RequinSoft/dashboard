@@ -10,5 +10,6 @@ class MoliendaConfiguracion extends Model
 
     protected $fillable = [
         'plan',
+        'dias'
     ];
 }

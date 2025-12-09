@@ -35,6 +35,7 @@
     <!--
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     -->
+
     <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>
     <script src="{{ asset('vendors/dropzone/dropzone.min.js') }}"></script>
     <script src="{{ asset('assets/js/flatpickr.js') }}"></script>

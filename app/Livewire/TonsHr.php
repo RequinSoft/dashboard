@@ -17,7 +17,7 @@ class TonsHr extends Component
 
     public function getData()
     {
-        $this->tonsHr = 0; // Aquí deberías obtener el valor real de tons/hr desde tu fuente de datos
+        $this->tonsHr = 150; // Aquí deberías obtener el valor real de tons/hr desde tu fuente de datos
 
         if($this->tonsHr <= 0){
             $this->molino = "molino_rojo.svg";
