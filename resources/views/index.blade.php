@@ -329,13 +329,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-3 text-center">
-                        <img src="{{ asset('assets/img/') }}"  height="350" width="350" >
-                        
-                        <h3 id="obtenerRitmo" class="text-primary">
-                            {{ $getData }} tons/hr
-                        </h3>                
-                    </div>
+                    @livewire('tons-hr')    
 
 
                 </div>                

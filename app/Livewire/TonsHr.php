@@ -7,7 +7,8 @@ use Livewire\Component;
 
 class TonsHr extends Component
 {
-    public $getData = [];
+    public $tonsHr;
+    public $molino;
 
     public function mount()
     {
@@ -16,10 +17,13 @@ class TonsHr extends Component
 
     public function getData()
     {
-        $getData = [];
-        // Lógica para obtener los datos de tons/hr y molino
-        
-        $this->getData = $getData;
+        $this->tonsHr = 0; // Aquí deberías obtener el valor real de tons/hr desde tu fuente de datos
+
+        if($this->tonsHr <= 0){
+            $this->molino = "molino_rojo.svg";
+        } else{
+            $this->molino = "molino_verde.svg";
+        }
     }
 
     public function render()
