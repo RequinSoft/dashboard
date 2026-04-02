@@ -95,6 +95,16 @@
               </div>
             </a>
 
+            <a class="nav-link" href="{{ route('pl.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+              <div class="d-flex align-items-center">
+                <span class="nav-link-icon">
+                  <span class="fa fa-tty">
+                  </span>
+                </span>
+                  <span class="nav-link-text ps-1">Prácticas de Liderazgo</span>
+              </div>
+            </a>
+
             <!-- parent pages--><a class="nav-link" href="{{ route('molienda.configuracion') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">

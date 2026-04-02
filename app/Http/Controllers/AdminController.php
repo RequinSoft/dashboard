@@ -12,6 +12,7 @@ use App\Models\Equipo;
 use App\Models\Ldap;
 use App\Models\Molienda;
 use App\Models\MoliendaConfiguracion;
+use App\Models\PLPerson;
 use App\Models\Tags;
 use App\Models\User;
 
@@ -978,5 +979,22 @@ class AdminController extends Controller
 
         return redirect()->route('pi.tags')
             ->with('success', 'Los datos del tag se han actualizado correctamente.');
+    }
+
+    /************************************************* */
+    /************************ PL ********************* */
+    /************************************************* */
+    public function plIndex(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $people = PLPerson::all();
+
+        return view('admin.pl.index', compact('empresa', 'people'));
     }
 }

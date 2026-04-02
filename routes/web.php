@@ -174,4 +174,10 @@ Route::controller(AdminController::class)
 
     Route::post('/pi/tags/update/', 'piTagsUpdate')
         ->name('pi.tags.update');
+
+    /************************************* */
+    /**************** PL ***************** */
+    /************************************* */
+    Route::get('/pl', 'plIndex')
+        ->name('pl.index');
 });
