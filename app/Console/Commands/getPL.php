@@ -34,18 +34,15 @@ class getPL extends Command
 
         $monthName = Carbon::createFromDate($currentYear, $currentMonth, 1)->locale('es')->monthName;
         $pastMonthName = Carbon::createFromDate($currentYear, $pastMonth, 1)->locale('es')->monthName;
-        print("Nombre del Mes Actual: $monthName\n");
-        print("Nombre del Mes Anterior: $pastMonthName\n");
+        //print("Nombre del Mes Actual: $monthName\n");
+        //print("Nombre del Mes Anterior: $pastMonthName\n");
         
         $avgMonth = AVGMes::where('MES', $pastMonthName)
             ->where('ANIO', $currentYear);
 
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
-        foreach ($avgMonth as $avg) {
-            print("Calculando para la persona: \n");
-            print($avg);
-        }
+        print_r($avgMonth->get()->toArray());
         
     }
 }
