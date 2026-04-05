@@ -45,6 +45,7 @@ class getPL extends Command
         print("Total de personas en PL: " . count($plPersons) . "\n");
         
         $avgMonth = AVGMes::query()->whereIn('PERSONA', $plPersons)
+            ->sortBy('PERSONA')
             ->where('MES', $pastMonthName)
             ->where('ANIO', $currentYear)
             ->get();
