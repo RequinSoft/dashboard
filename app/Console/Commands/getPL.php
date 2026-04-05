@@ -34,10 +34,10 @@ class getPL extends Command
         $avgMonth = AVGMes::where('MES', $currentMonth)
             ->where('ANIO', $currentYear);
 
-        print("Calculando el promedio de PL para el mes: $currentMonth, año: $currentYear\n");
+        print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
         foreach ($avgMonth as $avg) {
-            print("Calculando para la persona: {$avg}\n");
+            print_r("Calculando para la persona: {$avg}\n");
         }
         
     }
