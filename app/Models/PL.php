@@ -9,10 +9,10 @@ class PL extends Model
     protected $table = 'p_l_s';
 
     protected $fillable = [
-        'pl_person_id',
-        'pl',
-        'year',
-        'month',
+        'PERSONA',
+        'PORCENTAJE_TOTAL',
+        'ANIO',
+        'MES',
     ];
 
     public function person()
