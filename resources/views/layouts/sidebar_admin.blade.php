@@ -95,7 +95,7 @@
               </div>
             </a>
 
-            <a class="nav-link" href="{{ route('pl.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
+            <a class="nav-link" href="{{ route('pl-people.index') }}" role="button" data-bs-toggle="" aria-expanded="false">
               <div class="d-flex align-items-center">
                 <span class="nav-link-icon">
                   <span class="fa fa-tty">

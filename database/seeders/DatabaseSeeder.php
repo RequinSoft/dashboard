@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsSeeder::class);
         $this->call(LdapSeeder::class);
         $this->call(MoliendaSeeder::class);
+        //$this->call(PLPersonSeeder::class);
     }
 }

@@ -21,10 +21,10 @@
                     <div class="row g-0 text-center fs--1">
                     @foreach($people as $person)
                         <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-1 px-2">
-                            <div class="bg-white dark__bg-1100 p-3 h-100"><a href="../../pages/user/profile.html"><img class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm" src="{{asset('assets/img/team/avatar.png')}}" alt="" width="100" /></a>
-                                <h6 class="mb-1"><a href="../../pages/user/profile.html">{{ $person->name }}</a>
+                            <div class="bg-white dark__bg-1100 p-3 h-100"><a href="{{ route('pl-person.editar', $person->id) }}"><img class="img-thumbnail img-fluid rounded-circle mb-3 shadow-sm" src="{{ $person->image ? asset('avatars/'.$person->image) : asset('assets/img/team/avatar.png') }}" alt="" width="100" /></a>
+                                <h6 class="mb-1"><a href="{{ route('pl-person.editar', $person->id) }}">{{ $person->name }}</a>
                                 </h6>
-                                <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $person->puesto }}</a></p>
+                                <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $person->position }}</a></p>
                             </div>
                         </div>
                     @endforeach

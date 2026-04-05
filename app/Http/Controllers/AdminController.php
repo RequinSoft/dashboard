@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\BarrenosPlan;
 use App\Models\ConfigEmpresa;
@@ -984,7 +985,7 @@ class AdminController extends Controller
     /************************************************* */
     /************************ PL ********************* */
     /************************************************* */
-    public function plIndex(){
+    public function plPeopleIndex(){
         
         $empresa = ConfigEmpresa::first();
         if($empresa == null){
@@ -996,5 +997,59 @@ class AdminController extends Controller
         $people = PLPerson::all();
 
         return view('admin.pl.index', compact('empresa', 'people'));
+    }
+
+    public function plPersonEditar($id){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        $person = PLPerson::find($id);
+        if(!$person){
+            return redirect()->route('pl-people.index')
+                ->with('error', 'La persona no existe.');
+        }
+
+        return view('admin.pl.editar', compact('empresa', 'person'));
+    }
+
+     public function plPersonUpdate(Request $request){
+        
+        $request->validate(
+            [
+                'id' => 'required|exists:p_l_people,id',
+                'name' => 'required',
+                'position' => 'required',
+            ],
+            [
+                'id.exists' => 'La persona no existe.',
+                'name.required' => 'El campo Nombre es obligatorio.',
+                'position.required' => 'El campo Cargo es obligatorio.',
+            ]
+        );
+        //return $request->all();
+
+        $person = PLPerson::find($request->id);
+
+        $person->name = $request->name;
+        $person->position = $request->position;
+
+        if($request->has('image')){
+            //return "Tiene imagen";
+            $file = $request->file('image');
+            Storage::disk('avatars')->put($file->getClientOriginalName(), file_get_contents($file->getRealPath()));
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $person->image = $imageFilename;
+        }
+
+        $person->save();
+
+        return redirect()->route('pl-people.index')
+            ->with('success', 'Los datos de la persona se han actualizado correctamente.');
     }
 }

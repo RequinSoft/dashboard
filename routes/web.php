@@ -178,6 +178,12 @@ Route::controller(AdminController::class)
     /************************************* */
     /**************** PL ***************** */
     /************************************* */
-    Route::get('/pl', 'plIndex')
-        ->name('pl.index');
+    Route::get('/pl-people', 'plPeopleIndex')
+        ->name('pl-people.index');
+
+    Route::get('/pl-person/editar/{id}', 'plPersonEditar')
+        ->name('pl-person.editar');
+
+    Route::put('/pl-person/update/{id}', 'plPersonUpdate')
+        ->name('pl-person.update');
 });
