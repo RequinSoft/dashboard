@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('PERSONA');
             $table->float('PORCENTAJE_TOTAL')->nullable() ->default(0);
             $table->unsignedMediumInteger('ANIO');
-            $table->unsignedTinyInteger('MES');
+            $table->string('MES');
             $table->timestamps();
         });
     }
