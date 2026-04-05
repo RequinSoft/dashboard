@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\PL;
 use App\Models\AVGMes;
+use App\Models\PLPerson;
 
 class getPL extends Command
 {
@@ -36,8 +37,15 @@ class getPL extends Command
         $pastMonthName = Carbon::createFromDate($currentYear, $pastMonth, 1)->locale('es')->monthName;
         //print("Nombre del Mes Actual: $monthName\n");
         //print("Nombre del Mes Anterior: $pastMonthName\n");
+
+        $plPersons = PLPerson::all()->pluck('name')->toArray();
+
         
-        $avgMonth = AVGMes::all();
+        
+        $avgMonth = AVGMes::query()->whereIn('PERSONA', $plPersons)
+            ->where('MES', $monthName)
+            ->where('ANIO', $currentYear)
+            ->get();
 
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
