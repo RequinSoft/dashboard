@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('p_l_s', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('pl_person_id')->nullable();
-            $table->foreign('pl_person_id')->references('id')->on('p_l_people');
-
-            $table->float('pl')->nullable();
-            $table->unsignedMediumInteger('year');
-            $table->unsignedTinyInteger('month');
+            $table->string('PERSONA');
+            $table->float('PORCENTAJE_TOTAL')->nullable() ->default(0);
+            $table->unsignedMediumInteger('ANIO');
+            $table->unsignedTinyInteger('MES');
             $table->timestamps();
         });
     }
