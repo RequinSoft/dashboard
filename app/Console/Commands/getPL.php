@@ -38,11 +38,15 @@ class getPL extends Command
         //print("Nombre del Mes Anterior: $pastMonthName\n");
         
         $avgMonth = AVGMes::where('MES', $pastMonthName)
-            ->where('ANIO', $currentYear);
+            ->where('ANIO', $currentYear)
+            ->get();
 
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
-        print_r($avgMonth->get()->toArray());
+        foreach($avgMonth as $avg){
+            print("Persona: $avg->PERSONA, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
+        }
         
+
     }
 }
