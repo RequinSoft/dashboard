@@ -999,6 +999,55 @@ class AdminController extends Controller
         return view('admin.pl.index', compact('empresa', 'people'));
     }
 
+    public function plPersonCrear(){
+        
+        $empresa = ConfigEmpresa::first();
+        if($empresa == null){
+            $empresa = '';
+        }else{
+            $empresa = $empresa->nombre_empresa;
+        }
+
+        return view('admin.pl.crear', compact('empresa'));
+    }
+
+    public function plPersonStore(Request $request){
+        
+        $request->validate(
+            [
+                'name' => 'required|unique:p_l_people,name',
+                'position' => 'required',
+            ],
+            [
+                'name.required' => 'El campo Nombre es obligatorio.',
+                'name.unique' => 'El Nombre ya está en uso.',
+                'position.required' => 'El campo Cargo es obligatorio.',
+                'image.image' => 'El campo Imagen debe ser una imagen.',
+                'image.mimes' => 'El campo Imagen debe ser un archivo de tipo: jpeg, png, jpg.',
+                'image.max' => 'El campo Imagen no debe ser mayor de 2MB.',
+            ]
+        );
+        //return $request->all();
+
+        $data = [
+            'name' => $request->name,
+            'position' => $request->position,
+        ];
+
+        if($request->has('image')){
+            $file = $request->file('image');
+            $imagePath = $file->storeAs('avatars', $file->getClientOriginalName(), 'public');
+            // guardar nombre original del archivo
+            $imageFilename = $file->getClientOriginalName();
+            $data['image'] = $imageFilename;
+        }
+        
+        $person = PLPerson::create($data);
+
+        return redirect()->route('pl-people.index')
+            ->with('success', 'La persona se ha creado correctamente.');
+    }
+
     public function plPersonEditar($id){
         
         $empresa = ConfigEmpresa::first();

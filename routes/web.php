@@ -181,6 +181,12 @@ Route::controller(AdminController::class)
     Route::get('/pl-people', 'plPeopleIndex')
         ->name('pl-people.index');
 
+    Route::get('/pl-person/crear', 'plPersonCrear')
+        ->name('pl-person.crear');
+
+    Route::post('/pl-person/store', 'plPersonStore')
+        ->name('pl-person.store');
+
     Route::get('/pl-person/editar/{id}', 'plPersonEditar')
         ->name('pl-person.editar');
 

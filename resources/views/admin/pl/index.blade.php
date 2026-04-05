@@ -4,8 +4,13 @@
 
 @section('content')
 <div class="card mb-3">
-    <div class="card-header">
-      <h5 class="mb-0">Equipo Líder</h5>
+    <div class="card-header row">
+        <div class="col-sm-6">
+            <h5 class="mb-0">Equipo Líder</h5>
+        </div>
+        <div class="col-sm-6 text-end">
+            <a href="{{ route('pl-person.crear') }}" class="btn btn-primary">Agregar Persona</a>
+        </div>
     </div>
     <div class="card-body bg-light">
             <div class="row gx-2">             

@@ -10,7 +10,8 @@ class PLPerson extends Model
 
     protected $fillable = [
         'name',
-        'puesto',
+        'position',
+        'image',
     ];
 
     public function pls()
