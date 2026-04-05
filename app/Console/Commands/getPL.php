@@ -30,6 +30,9 @@ class getPL extends Command
     {
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
+
+        $monthName = Carbon::createFromDate($currentYear, $currentMonth, 1)->locale('es')->monthName;
+        print("Nombre del Mes Actual: $monthName\n");
         
         $avgMonth = AVGMes::where('MES', $currentMonth)
             ->where('ANIO', $currentYear);
