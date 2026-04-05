@@ -39,7 +39,7 @@ class getPL extends Command
         //print("Nombre del Mes Anterior: $pastMonthName\n");
 
         $plPersons = PLPerson::all()->pluck('name')->toArray();
-
+        print("Personas en la tabla PLPerson: " . implode(", ", $plPersons) . "\n");
         
         
         $avgMonth = AVGMes::query()->whereIn('PERSONA', $plPersons)
