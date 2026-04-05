@@ -37,9 +37,7 @@ class getPL extends Command
         //print("Nombre del Mes Actual: $monthName\n");
         //print("Nombre del Mes Anterior: $pastMonthName\n");
         
-        $avgMonth = AVGMes::where('MES', $pastMonthName)
-            ->where('ANIO', $currentYear)
-            ->get();
+        $avgMonth = AVGMes::all();
 
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
