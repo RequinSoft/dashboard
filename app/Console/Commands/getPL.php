@@ -38,7 +38,7 @@ class getPL extends Command
         //print("Nombre del Mes Actual: $monthName\n");
         //print("Nombre del Mes Anterior: $pastMonthName\n");
 
-        $plPersons = PLPerson::all()->pluck('name')->toArray();
+        $plPersons = PLPerson::all()->sortBy('name')->pluck('name')->toArray();
         foreach($plPersons as $person){
             print("Persona en PL: $person\n");
         }
