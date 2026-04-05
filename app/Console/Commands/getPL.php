@@ -29,12 +29,15 @@ class getPL extends Command
     public function handle()
     {
         $currentMonth = Carbon::now()->month;
+        $pastMonth = Carbon::now()->subMonth()->month;
         $currentYear = Carbon::now()->year;
 
         $monthName = Carbon::createFromDate($currentYear, $currentMonth, 1)->locale('es')->monthName;
+        $pastMonthName = Carbon::createFromDate($currentYear, $pastMonth, 1)->locale('es')->monthName;
         print("Nombre del Mes Actual: $monthName\n");
+        print("Nombre del Mes Anterior: $pastMonthName\n");
         
-        $avgMonth = AVGMes::where('MES', $currentMonth)
+        $avgMonth = AVGMes::where('MES', $pastMonthName)
             ->where('ANIO', $currentYear);
 
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
