@@ -31,11 +31,14 @@ class getPL extends Command
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
 
+        print("Calculando el promedio de PL para el mes: $currentMonth, año: $currentYear\n");
+        /*
         $avgMonth = AVGMes::where('MES', $currentMonth)
             ->where('ANIO', $currentYear)
             ->first();
 
         print("Calculando el promedio de PL para el mes: $currentMonth, año: $currentYear\n");
         print("Promedio actual: " . ($avgMonth ? $avgMonth->PORCENTAJE_TOTAL : 'No disponible') . "\n");
+        */
     }
 }
