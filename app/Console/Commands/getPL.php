@@ -37,8 +37,7 @@ class getPL extends Command
         print("Calculando el promedio de PL para el mes: $currentMonth, año: $currentYear\n");
 
         foreach ($avgMonth as $avg) {
-            print("Calculando para la persona: {$avg->PERSONA}\n");
-            print("Porcentaje total: {$avg->PORCENTAJE_TOTAL}\n");
+            print("Calculando para la persona: {$avg}\n");
         }
         
     }
