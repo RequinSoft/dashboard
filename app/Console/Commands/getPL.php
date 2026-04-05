@@ -37,7 +37,8 @@ class getPL extends Command
         print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
 
         foreach ($avgMonth as $avg) {
-            print_r("Calculando para la persona: {$avg}\n");
+            print("Calculando para la persona: \n");
+            print($avg);
         }
         
     }
