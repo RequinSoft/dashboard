@@ -17,6 +17,6 @@ class PL extends Model
 
     public function person()
     {
-        return $this->belongsTo(PLPerson::class, 'pl_person_id', 'id');
+        return $this->belongsTo(PLPerson::class, 'PERSONA', 'name');
     }
 }

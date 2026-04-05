@@ -20,10 +20,10 @@ class PLPerson extends Model
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
 
-        return $this->hasMany(PL::class, 'pl_person_id', 'id')
-        ->orderBy('year', 'desc')
-        ->orderBy('month', 'asc')
-        ->where('year', $currentYear);
+        return $this->hasMany(PL::class, 'PERSONA', 'name')
+        ->orderBy('ANIO', 'desc')
+        ->orderBy('MES', 'asc')
+        ->where('ANIO', $currentYear);
     }
 
 }
