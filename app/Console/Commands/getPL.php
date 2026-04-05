@@ -48,6 +48,7 @@ class getPL extends Command
             ->whereIn('PERSONA', $plPersons)
             ->where('MES', $pastMonthName)
             ->where('ANIO', $currentYear)
+            ->orderBY('PERSONA', 'ASC')
             ->get();
 
         print("Obteniendo datos para el mes: $pastMonthName, año: $currentYear\n");
