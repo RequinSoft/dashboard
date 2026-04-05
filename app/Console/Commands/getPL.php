@@ -42,7 +42,7 @@ class getPL extends Command
         foreach($plPersons as $person){
             print("Persona en PL: $person\n");
         }
-        
+        print("Total de personas en PL: " . count($plPersons) . "\n");
         
         $avgMonth = AVGMes::query()->whereIn('PERSONA', $plPersons)
             ->where('MES', $pastMonthName)
@@ -54,6 +54,7 @@ class getPL extends Command
         foreach($avgMonth as $avg){
             print("Persona: $avg->PERSONA, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
         }
+        print("Total de registros obtenidos: " . count($avgMonth) . "\n");
         
 
     }
