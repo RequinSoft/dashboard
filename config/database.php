@@ -64,23 +64,18 @@ return [
         ],
 
         'ssmarc' => [
-            'driver' => 'mysql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST_SSMARC', '127.0.0.1'),
-            'port' => env('DB_PORT_SSMARC', '3306'),
+            'driver' => 'sqlsrv',
+            'url' => env('DB_URL_SSMARC'),
+            'host' => env('DB_HOST_SSMARC', 'localhost'),
+            'port' => env('DB_PORT_SSMARC', '1433'),
             'database' => env('DB_DATABASE_SSMARC', 'laravel'),
             'username' => env('DB_USERNAME_SSMARC', 'root'),
             'password' => env('DB_PASSWORD_SSMARC', ''),
-            'unix_socket' => env('DB_SOCKET_SSMARC', ''),
-            'charset' => env('DB_CHARSET_SSMARC', 'utf8mb4'),
-            'collation' => env('DB_COLLATION_SSMARC', 'utf8mb4_unicode_ci'),
+            'charset' => env('DB_CHARSET_SSMARC', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
+            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
         'mariadb' => [
