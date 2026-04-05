@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PLPerson extends Model
 {
@@ -14,8 +15,15 @@ class PLPerson extends Model
         'image',
     ];
 
-    public function pls()
+    public function pls_mesActual()
     {
-        return $this->hasMany(PL::class, 'pl_person_id', 'id');
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
+
+        return $this->hasMany(PL::class, 'pl_person_id', 'id')
+        ->orderBy('year', 'desc')
+        ->orderBy('month', 'asc')
+        ->where('year', $currentYear);
     }
+
 }

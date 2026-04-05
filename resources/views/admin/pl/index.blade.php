@@ -9,7 +9,7 @@
             <h5 class="mb-0">Equipo Líder</h5>
         </div>
         <div class="col-sm-6 text-end">
-            <a href="{{ route('pl-person.crear') }}" class="btn btn-primary">Agregar Persona</a>
+            <a href="{{ route('pl-person.crear') }}" class="btn btn-primary">Agregar</a>
         </div>
     </div>
     <div class="card-body bg-light">
@@ -30,6 +30,9 @@
                                 <h6 class="mb-1"><a href="{{ route('pl-person.editar', $person->id) }}">{{ $person->name }}</a>
                                 </h6>
                                 <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $person->position }}</a></p>
+                                @foreach ($person->pls_mesActual as $mesActual)
+                                <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $mesActual->month }} - {{ $mesActual->pl }}</a></p>
+                                @endforeach
                             </div>
                         </div>
                     @endforeach
