@@ -45,11 +45,11 @@ class getPL extends Command
         
         
         $avgMonth = AVGMes::query()->whereIn('PERSONA', $plPersons)
-            ->where('MES', $monthName)
+            ->where('MES', $pastMonthName)
             ->where('ANIO', $currentYear)
             ->get();
 
-        print("Obteniendo datos para el mes: $currentMonth, año: $currentYear\n");
+        print("Obteniendo datos para el mes: $pastMonthName, año: $currentYear\n");
 
         foreach($avgMonth as $avg){
             print("Persona: $avg->PERSONA, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
