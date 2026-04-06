@@ -57,6 +57,7 @@ class getPL extends Command
             print("Persona: $avg->PERSONA, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
             PL::updateOrCreate(
                 [
+                    'PERSONA' => $avg->PERSONA,
                     'MES' => $pastMonthName,
                     'ANIO' => $currentYear,
                 ],
