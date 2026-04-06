@@ -15,15 +15,13 @@ class PLPerson extends Model
         'image',
     ];
 
-    public function pls_mesActual()
+    public function pl_avg()
     {
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
 
         return $this->hasMany(PL::class, 'PERSONA', 'name')
-        ->orderBy('ANIO', 'desc')
-        ->orderBy('MES', 'asc')
-        ->where('ANIO', $currentYear);
+            ->where('ANIO', $currentYear)
+            ->orderBy('MONTH', 'ASC');
     }
-
 }

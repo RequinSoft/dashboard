@@ -30,9 +30,18 @@
                                 <h6 class="mb-1"><a href="{{ route('pl-person.editar', $person->id) }}">{{ $person->name }}</a>
                                 </h6>
                                 <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $person->position }}</a></p>
-                                @foreach ($person->pls_mesActual as $mesActual)
-                                <p class="fs--2 mb-1"><a class="text-700" href="#!">{{ $mesActual->month }} - {{ $mesActual->pl }}</a></p>
-                                @endforeach
+                                <table class="table table-sm table-borderless fs--2 mb-0">
+                                    <tr>
+                                        <th class="text-900">Mes</th>
+                                        <th class="text-900">PL %</th>
+                                    </tr>
+                                    @foreach ($person->pl_avg as $mesActual)
+                                    <tr>
+                                        <td class="fs--2 mb-1"><a class="text-700" href="#!">{{ $mesActual->MES }}</a></td>
+                                        <td class="fs--2 mb-1"><a class="text-700" href="#!">{{ $mesActual->PORCENTAJE_TOTAL }}%</a></td>
+                                    </tr>
+                                    @endforeach
+                                </table>
                             </div>
                         </div>
                     @endforeach
