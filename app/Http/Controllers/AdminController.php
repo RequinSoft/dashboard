@@ -994,7 +994,7 @@ class AdminController extends Controller
             $empresa = $empresa->nombre_empresa;
         }
 
-        $people = PLPerson::with('pl_avg')->get();
+        $people = PLPerson::with('pl_avg')->orderBy('name', 'ASC')->get();
         //return $people;
 
         return view('admin.pl.index', compact('empresa', 'people'));

@@ -1,6 +1,6 @@
 @extends('layouts.template_admin')
 
-@section('title', 'Administración - PI')
+@section('title', 'Administración - PL')
 
 @section('content')
 <div class="card mb-3">

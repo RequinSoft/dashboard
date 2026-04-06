@@ -32,7 +32,7 @@ class PL extends Component
         $currentYear = Carbon::now()->year;
 
         $plValues = PLModel::where('ANIO', $currentYear)
-            ->where('MES', $currentMonth)
+            ->where('MONTH', $currentMonth)
             ->pluck('PORCENTAJE_TOTAL');
 
         return $plValues->avg() ?? 0; // Devuelve el promedio o 0 si no hay datos   
