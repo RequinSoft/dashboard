@@ -1031,7 +1031,7 @@ class AdminController extends Controller
         //return $request->all();
 
         $data = [
-            'name' => $request->name,
+            'name' => mb_strtoupper($request->name),
             'position' => $request->position,
         ];
 
@@ -1085,7 +1085,7 @@ class AdminController extends Controller
 
         $person = PLPerson::find($request->id);
 
-        $person->name = $request->name;
+        $person->name = mb_strtoupper($request->name);
         $person->position = $request->position;
 
         if($request->has('image')){
