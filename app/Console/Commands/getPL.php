@@ -63,6 +63,7 @@ class getPL extends Command
                 [
                     'PERSONA' => $avg->PERSONA,
                     'MES' => $pastMonthName,
+                    'MONTH' => $pastMonth,
                     'ANIO' => $currentYear,
                     'PORCENTAJE_TOTAL' => $avg->PORCENTAJE_TOTAL,
                 ]
