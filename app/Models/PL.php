@@ -13,6 +13,7 @@ class PL extends Model
         'PORCENTAJE_TOTAL',
         'ANIO',
         'MES',
+        'MONTH',
     ];
 
     public function person()
