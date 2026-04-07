@@ -30,7 +30,7 @@ class getPL extends Command
     public function handle()
     {
         $currentMonth = Carbon::now()->month;
-        $pastMonth = Carbon::now()->subMonth()->month;
+        $pastMonth = Carbon::now()->subMonth(2)->month;
         $currentYear = Carbon::now()->year;
 
         $monthName = Carbon::createFromDate($currentYear, $currentMonth, 1)->locale('es')->monthName;
@@ -69,7 +69,7 @@ class getPL extends Command
                     'PORCENTAJE_TOTAL' => $avg->PORCENTAJE_TOTAL,
                 ]
             ); 
-            print("PastMonth: $pastMonthName, Número: $pastMonth\n"); 
+            //print("PastMonth: $pastMonthName, Número: $pastMonth\n"); 
         }
         print("Total de registros obtenidos: " . count($avgMonth) . "\n");
         
