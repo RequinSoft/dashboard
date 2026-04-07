@@ -68,10 +68,10 @@ class getPL extends Command
                     'ANIO' => $currentYear,
                     'PORCENTAJE_TOTAL' => $avg->PORCENTAJE_TOTAL,
                 ]
-            );  
+            ); 
+            print("PastMonth: $pastMonthName, Número: $pastMonth\n"); 
         }
         print("Total de registros obtenidos: " . count($avgMonth) . "\n");
-        print("PastMonth: $pastMonthName, Número: $pastMonth\n");
         
 
     }
