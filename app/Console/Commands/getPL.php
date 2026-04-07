@@ -30,7 +30,7 @@ class getPL extends Command
     public function handle()
     {
         $currentMonth = Carbon::now()->month;
-        $pastMonth = Carbon::now()->subMonth(3)->month;
+        $pastMonth = Carbon::now()->subMonth()->month;
         $currentYear = Carbon::now()->year;
 
         $monthName = Carbon::createFromDate($currentYear, $currentMonth, 1)->locale('es')->monthName;
