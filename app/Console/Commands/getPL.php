@@ -54,7 +54,7 @@ class getPL extends Command
         print("Obteniendo datos para el mes: $pastMonthName, año: $currentYear\n");
 
         foreach($avgMonth as $avg){
-            print("Persona: $avg->PERSONA, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
+            print("Persona: $avg->PERSONA, Mes: $avg->MES, Número del Mes: $avg->MONTH, Porcentaje Total: $avg->PORCENTAJE_TOTAL\n");
             PL::updateOrCreate(
                 [
                     'PERSONA' => $avg->PERSONA,
