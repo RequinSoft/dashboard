@@ -71,6 +71,7 @@ class getPL extends Command
             );  
         }
         print("Total de registros obtenidos: " . count($avgMonth) . "\n");
+        print("PastMonth: $pastMonthName, Número: $pastMonth\n");
         
 
     }
