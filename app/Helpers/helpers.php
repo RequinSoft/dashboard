@@ -104,6 +104,8 @@ if(!function_exists('getDemanda')) {
 if(!function_exists('getWebId')){
     function getWebId($tag, $ip_pi, $ip_af, $user, $password){
             
+        $pi_user = 'administrador';
+        $pi_password = 'P@dcp3nrtu$4dm';
         
         $servidor_pi = 'https://'.$ip_af.'/piwebapi/points?path=\\\\'.$ip_pi.'\\'.$tag;        
 
@@ -126,8 +128,8 @@ if(!function_exists('getWebId')){
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
-            curl_setopt($ch, CURLOPT_USERNAME, $user);
-            curl_setopt($ch, CURLOPT_PASSWORD, $password);
+            curl_setopt($ch, CURLOPT_USERNAME, $pi_user);
+            curl_setopt($ch, CURLOPT_PASSWORD, $pi_password);
 
             $response = curl_exec($ch);
             curl_close($ch);
