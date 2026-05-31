@@ -103,12 +103,7 @@ if(!function_exists('getDemanda')) {
 
 if(!function_exists('getWebId')){
     function getWebId($tag, $ip_pi, $ip_af, $user, $password){
-            
-        $pi_user = 'duxcontrol';
-        $pi_password = 'Jp02k23dux';
-        //$ip = '10.74.101.43';
-        //$ip_pi = '10.74.16.35';
-        
+                    
         $servidor_pi = 'https://'.$ip_af.'/piwebapi/points?path=\\\\'.$ip_pi.'\\'.$tag;        
 
         $url = $servidor_pi;  
