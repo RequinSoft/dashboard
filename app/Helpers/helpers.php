@@ -125,8 +125,8 @@ if(!function_exists('getWebId')){
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
-            curl_setopt($ch, CURLOPT_USERNAME, $pi_user);
-            curl_setopt($ch, CURLOPT_PASSWORD, $pi_password);
+            curl_setopt($ch, CURLOPT_USERNAME, $user);
+            curl_setopt($ch, CURLOPT_PASSWORD, $password);
 
             $response = curl_exec($ch);
             curl_close($ch);
