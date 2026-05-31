@@ -974,8 +974,9 @@ class AdminController extends Controller
 
         if($pi->activo){
             $webId = getWebId($request->tag, $pi->ip_pi, $pi->ip_af, $pi->user, $pi->password);
-            return dd($webId);
+            //return dd($webId);
             $data->webid = $webId['WebId'];
+            return $data;
         }
         $data->save();
 
