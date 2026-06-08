@@ -41,7 +41,6 @@
                     <input class="form-control" id="dias" name="dias" type="text" value="{{ $data->dias ? $data->dias : '' }}" />
                 </div>
                 <div class="col-sm-6 mb-3">
-
                 </div>
                           
                 <div class="col-6 mt-2 text-end">
