@@ -104,8 +104,8 @@ if(!function_exists('getDemanda')) {
 if(!function_exists('getWebId')){
     function getWebId($tag, $ip_pi, $ip_af, $user, $password){
             
-        $pi_user = 'administrador';
-        $pi_password = 'P@dcp3nrtu$4dm';
+        $pi_user = $user;
+        $pi_password = $password;
         
         $servidor_pi = 'https://'.$ip_af.'/piwebapi/points?path=\\\\'.$ip_pi.'\\'.$tag;        
 
@@ -147,3 +147,4 @@ if(!function_exists('getWebId')){
         }
     }
 }
+
