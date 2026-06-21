@@ -127,12 +127,13 @@ if(!function_exists('getWebId')){
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false );
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);  
             curl_setopt($ch, CURLOPT_USERNAME, $pi_user);
             curl_setopt($ch, CURLOPT_PASSWORD, $pi_password);
 
             $response = curl_exec($ch);
             curl_close($ch);
+            dd($response);
             $json = json_decode($response, true);
         }
         //return $json;
