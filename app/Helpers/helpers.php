@@ -133,7 +133,12 @@ if(!function_exists('getWebId')){
 
             $response = curl_exec($ch);
             curl_close($ch);
-            dd($response);
+            dd([
+                'response' => $response,
+                'errno' => curl_errno($ch),
+                'error' => curl_error($ch),
+                'info' => curl_getinfo($ch),
+            ]);
             $json = json_decode($response, true);
         }
         //return $json;
