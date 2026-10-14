@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('title', 'Principal')
+@section('body-class', 'mining-operations')
 
 @section('content')
 <!-- Primer Marco, Dashboard Juanicipio -->
@@ -9,9 +10,13 @@
     <div class="col-lg-12 col-xxl-12">
         
         <!-- Primer tira -->
-        <div class="card mb-1">
+        <div class="mining-section-heading">
+            <div><p class="mining-eyebrow">Indicadores clave</p><h2>Panorama operativo</h2></div>
+            <span class="mining-section-caption">Mercado · Energía · Personas</span>
+        </div>
+        <div class="card mb-1 mining-kpi-panel">
             <div class="card-body">
-                <div class="row">
+                <div class="row mining-kpi-grid">
 
                 @livewire('conversiones')
 
@@ -256,27 +261,21 @@
         <!-- Primer Tira -->
 
         <!-- Segunda fila -->
-        <div class="card col-xxl-12">
+        <div class="card col-xxl-12 mining-production">
 
             <!-- Leyenda Molienda -->
-            <div class="card-header d-flex flex-between-center ps-0 py-0 border-bottom">
-                <ul class="nav nav-tabs border-0 flex-nowrap tab-active-caret" id="crm-revenue-chart-tab" role="tablist" data-tab-has-echarts="data-tab-has-echarts">
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link py-3 mb-0 active" id="crm-revenue-tab" data-bs-toggle="tab" href="#crm-revenue" role="tab" aria-controls="crm-revenue" aria-selected="true">
-                            Molienda
-                        </a>
-                    </li>
-                </ul>
-
+            <div class="card-header mining-section-heading">
+                <div><p class="mining-eyebrow">Planta de beneficio</p><h2>Molienda y producción</h2></div>
+                <span class="mining-section-caption">Plan vs. producción real</span>
             </div>
 
             <div class="card-body">
-                <div class="row">
+                <div class="row mining-production-grid">
 
-                    <div class="col-xxl-3">
+                    <div class="col-lg-4 col-xxl-3 mining-turns">
                         <div class="row g-0 my-3">
 
-                            <div class="col-md-6 col-xxl-12">
+                            <div class="col-md-6 col-lg-12">
                                 <div class="border-xxl-bottom border-xxl-200 mb-2">
 
                                     <!-- Dona dentro de la gráfica -->
@@ -289,7 +288,7 @@
 
                             </div>
 
-                            <div class="col-md-6 col-xxl-12 py-2">
+                            <div class="col-md-6 col-lg-12 py-2">
                                 <div class="row mx-0">
                                     <div class="col-6 border-end border-bottom py-3">
                                         <h5 id="moliendaTurno1" class="fw-normal text-600"></h5>
@@ -332,12 +331,16 @@
     </div>
 
     <!-- Barrenación x Hora -->
-    <div class="row g-3">
-        <div class="col-xxl-7">
+    <div class="mining-section-heading">
+        <div><p class="mining-eyebrow">Operación de mina</p><h2>Barrenación y equipos</h2></div>
+        <span class="mining-section-caption">Seguimiento del día</span>
+    </div>
+    <div class="row g-3 mining-drilling">
+        <div class="col-lg-7">
             <div class="card h-150">
     
                 <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
-                <h6 class="mb-0">Barrenación x Hora</h6>
+                <h6 class="mb-0">Barrenación por hora</h6>
                 </div>
     
                 <div id="container_barrenacion" class="card-body d-flex align-items-center">
@@ -353,7 +356,7 @@
         <div class="col">
             <div class="row g-3">
                 @foreach($equiposBarrenacion as $equipoBarrenacion)
-                <div class="col-md-2 col-xxl-6">
+                <div class="col-sm-6 col-xxl-6">
                     <div class="card h-100">
                     <div class="card-body">
                         <div class="row flex-between-center">
@@ -373,7 +376,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-md-2 col-xxl-12">   
+                <div class="col-12">
                     <div class="card h-100">
                     <div class="card-body">
                         <div class="row flex-between-center">

@@ -1,7 +1,7 @@
                 <footer class="footer">
                     <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
                         <div class="col-12 col-sm-auto text-center">
-                            <p class="mb-0 text-600"></span><br class="d-sm-none" /> 2023 &copy; <a href="#">BBB-SOFT</a></p>
+                            <p class="mb-0 text-600">Gestión operativa minera <span class="mx-2">/</span> {{ date('Y') }} &copy; BBB-SOFT</p>
                         </div>
                         <div class="col-12 col-sm-auto text-center">
                             <p class="mb-0 text-600">{{ config('app.version') }}</p>
@@ -45,6 +45,7 @@
     <script src="{{ asset('assets/charts/modules/solid-gauge.js') }}"></script>
     <script src="{{ asset('assets/charts/modules/export-data.js') }}"></script>
     <script src="{{ asset('assets/charts/modules/accessibility.js') }}"></script>
+    <script src="{{ asset('assets/js/mining-dashboard.js') }}"></script>
     <script src="{{ asset('vendors/leaflet/leaflet.js') }}"></script>
     <script src="{{ asset('vendors/leaflet.markercluster/leaflet.markercluster.js') }}"></script>
     <script src="{{ asset('vendors/leaflet.tilelayer.colorfilter/leaflet-tilelayer-colorfilter.min.js') }}"></script>

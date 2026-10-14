@@ -7,6 +7,23 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Interfaz minera
+
+El dashboard operativo y la administracion comparten un tema empresarial:
+fondo claro, navegacion azul oscuro y acentos cobre. El tema se carga desde
+`public/assets/css/mining-dashboard.css`, despues de los estilos de Falcon,
+sin modificar los archivos del proveedor. El alcance se limita a los layouts
+compartidos; la pantalla de acceso conserva su tema actual.
+
+Las graficas Highcharts comparten una paleta azul y cobre mediante
+`public/assets/js/mining-dashboard.js`. El tema claro se aplica sin cambiar
+las preferencias guardadas del usuario para otras pantallas.
+
+La navegacion administrativa incluye la pagina activa y un menu desplegable
+en pantallas pequenas. El inicio administrativo ofrece accesos a los modulos
+existentes, sin indicadores simulados. Los IDs de graficas, las lecturas
+Livewire y los colores de alarma se conservan.
+
 ## Indicador del molino
 
 El indicador de tons/hr usa un SVG de un molino de bolas con tambor, corona

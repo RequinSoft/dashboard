@@ -1,4 +1,4 @@
-<div class="col-xxl-5 text-center">
+<div class="col-lg-8 col-xxl-6 text-center mining-chart">
     
     <div id="container_molienda" wire:ignore style="height: 400px;"></div>
 

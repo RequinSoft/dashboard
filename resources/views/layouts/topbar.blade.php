@@ -1,16 +1,8 @@
-<body>
+<body class="mining-app @yield('body-class')">
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-        <div class="container" data-layout="container">
-            <script>
-              var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-              if (isFluid) {
-                  var container = document.querySelector('[data-layout]');
-                  container.classList.remove('container');
-                  container.classList.add('container-fluid');
-              }
-            </script>
+        <div class="container-fluid mining-shell" data-layout="container">
           
         

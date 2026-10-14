@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="es" dir="ltr" data-bs-theme="light">
 
   <head>
     <meta charset="utf-8">
@@ -24,8 +24,11 @@
     <link href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
     
     @yield('css')
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#132b40">
     <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script>
+      document.documentElement.classList.remove('dark', 'navbar-vertical-collapsed');
+    </script>
     <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
 
 
@@ -149,5 +152,6 @@
       }
     </script>
     
+    <link href="{{ asset('assets/css/mining-dashboard.css') }}" rel="stylesheet">
     @livewireStyles
   </head>
