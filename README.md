@@ -7,6 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Indicador del molino
+
+El indicador de tons/hr usa un SVG de un molino de bolas con tambor, corona
+dentada, motor y soportes. El tambor gira solamente cuando `tonsHr > 0`; con
+cero o valores negativos permanece detenido. El estado se muestra en verde
+o rojo y la animacion respeta la preferencia de movimiento reducido.
+
+El componente `App\Livewire\TonsHr` conserva el valor entre actualizaciones
+Livewire (cada 5 segundos). Su valor inicial sigue siendo 0: aun no hay una
+fuente de datos de tons/hr conectada. Al integrar esa fuente, se debe actualizar
+`tonsHr` con la lectura real, sin reiniciarlo en `render()`.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
