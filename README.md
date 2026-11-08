@@ -19,6 +19,49 @@ Livewire (cada 5 segundos). Su valor inicial sigue siendo 0: aun no hay una
 fuente de datos de tons/hr conectada. Al integrar esa fuente, se debe actualizar
 `tonsHr` con la lectura real, sin reiniciarlo en `render()`.
 
+## Conexion con Pitram
+
+La integracion se ejecuta desde el servidor que tenga ruta de red/VPN hacia
+Pitram. Usa `USER_PITRAM`, `PASS_PITRAM`, `IP_PITRAM`, `API_PITRAM_TOKEN` y
+`API_PITRAM_EQUIP` del `.env`, mediante `config/services.php`. Los endpoints
+pueden ser rutas relativas al host (incluido su puerto) o URLs HTTP(S)
+completas. Si el host no incluye protocolo, `PITRAM_SCHEME` usa `http`;
+configura `https` cuando el servidor lo soporte. HTTP transmite credenciales
+sin cifrado: usalo solo dentro de una red privada protegida o VPN. No se
+deshabilita la validacion de certificados ni se siguen redirecciones.
+
+En el servidor de pruebas, con su DB y `.env` ya configurados:
+
+```sh
+php artisan migrate
+php artisan config:clear
+php artisan app:get-pitram-token
+php artisan app:diagnose-pitram-equipment
+```
+
+La autenticacion envia un formulario POST con `grant_type=password`,
+`username` y `password`. El token se guarda cifrado en `pitram_tokens` con
+`APP_KEY`, oculto en la serializacion del modelo; conserva esa clave entre
+despliegues. Se reutiliza hasta su vencimiento con un margen de hasta 60
+segundos. `--refresh` fuerza su renovacion. Los comandos no imprimen tokens,
+credenciales ni cuerpos de error del servidor. La consulta de equipos usa
+GET con Bearer y renueva el token una sola vez si recibe HTTP 401.
+
+El comando de diagnostico muestra solo nombres de campos, tipos y cantidades,
+tomando el primer elemento de cada arreglo (limites: 6 niveles y 50 campos
+por objeto). Esta fase **no guarda equipos ni programa consultas automaticas**:
+con esa estructura se debe confirmar el identificador estable, el mapeo a
+`equipos` y la paginacion antes de implementar la importacion. Un listado
+vacio no permite conocer los campos; consulta cuando existan equipos.
+
+Las pruebas automatizadas requieren la extension PHP `pdo_sqlite` y usan HTTP
+simulado y SQLite en memoria; no conectan con Pitram ni modifican la DB
+configurada en el `.env`:
+
+```sh
+php artisan test --compact tests/Feature/PitramTest.php
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

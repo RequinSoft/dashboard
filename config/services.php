@@ -2,6 +2,15 @@
 
 return [
 
+    'pitram' => [
+        'host' => env('IP_PITRAM'),
+        'scheme' => env('PITRAM_SCHEME', 'http'),
+        'username' => env('USER_PITRAM'),
+        'password' => env('PASS_PITRAM'),
+        'token_endpoint' => env('API_PITRAM_TOKEN'),
+        'equipment_endpoint' => env('API_PITRAM_EQUIP'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
